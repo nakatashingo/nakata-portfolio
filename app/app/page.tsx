@@ -13,7 +13,7 @@ const cardsData = [
     type: "profile",
     name: "中田 慎吾",
     title: "Web Developer",
-    description: "初めまして、中田慎吾です！最近、フロントとエンドの勉強を始めました。HTML, CSSで基礎を学び、Reactの習得にも励んでいます。学習のまとめとして、ポートフォリオサイトを制作中です。",
+    description: "初めまして、中田慎吾です！最近、フロントエンドの勉強を始めました。HTML, CSSで基礎を学び、Reactの習得にも励んでいます。学習のまとめとして、ポートフォリオサイトを制作中です。",
     imageUrl: "https://placehold.jp/200x200.png",
     socialLinks: [
       { name: "GitHub", url: "https://github.com/nakatashingo", icon: <FaGithub /> },
