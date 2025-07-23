@@ -42,34 +42,43 @@ body {
 /* --- ポートフォリオスタイル --- */
 .portfolio-container {
   display: flex;
+  flex-wrap: wrap; /* カードを折り返し表示 */
   justify-content: center;
   align-items: center; 
   width: 100%;
   min-height: 100vh;
   padding: 2rem;
   background-color: #111827;
+  gap: 2rem; /* カード間の余白 */
 }
 
 .portfolio-card {
   /* ▼▼▼ コンテナクエリの設定 ▼▼▼ */
-  container-type: inline-size; /* この要素を幅基準のコンテナとして定義 */
-  container-name: portfolio-card; /* コンテナに名前を付ける */
+  container-type: inline-size;
+  container-name: portfolio-card;
 
   display: flex;
   align-items: center;
   background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
   color: white;
   border-radius: 16px;
-  padding: 2cqw; /* パディングをカードの幅に連動させる */
+  padding: 2cqw;
   
-  /* カード自体の大きさを画面に応じて変更 */
-  width: 30%;
-  max-width: 750px;
+  /* カードの横幅を柔軟に調整 (最小350px, 基本30%, 最大450px) */
+  width: clamp(350px, 30%, 450px);
   
-  aspect-ratio: 16 / 9; /* 縦横比を常に65:40に固定 */
+  aspect-ratio: 16 / 9;
   
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   gap: 5cqw;
+  text-decoration: none; /* aタグの下線を削除 */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバーエフェクト用 */
+}
+
+/* カードにホバーエフェクトを追加 */
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .introduction {
@@ -80,13 +89,13 @@ body {
 
 /* ▼▼▼ コンテナ相対単位(cqw)でフォントサイズを指定 ▼▼▼ */
 .introduction h1 {
-  font-size: 5.5cqw; /* カード幅の5.5% */
+  font-size: 5.5cqw;
   font-weight: 700;
   text-align: center;
 }
 
 .introduction h2 {
-  font-size: 3cqw; /* カード幅の3% */
+  font-size: 3cqw;
   font-weight: 400;
   color: #d1d5db;
   text-align: center;
@@ -94,7 +103,7 @@ body {
 }
 
 .introduction p {
-  font-size: 2.5cqw; /* カード幅の2.5% */
+  font-size: 2.5cqw;
   text-align: left;
   line-height: 1.6;
   color: #e5e7eb;
@@ -104,7 +113,7 @@ body {
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 8cqw; /* ギャップもカード幅に連動 */
+  gap: 8cqw;
   margin-top: 3cqw;
 }
 
@@ -117,7 +126,6 @@ body {
   opacity: 0.8;
 }
 
-/* react-iconsのSVGサイズをコンテナ基準で指定 */
 .social-icons svg {
   width: 6cqw;
   height: 6cqw;
@@ -130,11 +138,44 @@ body {
   justify-content: center;
 }
 
-/* 画像サイズをコンテナ基準で指定 */
 .profile-icon img {
   border-radius: 100%;
   width: 35cqw;
   height: 35cqw;
   object-fit: cover;
   border: none;
+}
+
+/* --- News/Worksカード用のスタイルを追加 --- */
+.content-card {
+  justify-content: center;
+  text-align: center;
+}
+
+.content-introduction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5cqw;
+}
+
+.content-introduction h1 {
+  font-size: 7cqw;
+  font-weight: 700;
+}
+
+.content-introduction p {
+  font-size: 2.5cqw;
+  color: #e5e7eb;
+  line-height: 1.5;
+  padding: 0 1cqw;
+}
+
+.content-icon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.content-icon svg {
+  width: 12cqw;
+  height: 12cqw;
 }
