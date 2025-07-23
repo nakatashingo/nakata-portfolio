@@ -3,10 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { FaGithub, FaInstagram, FaXTwitter, FaNewspaper, FaPaintbrush } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 import LoadingScreen from "./components/LoadingScreen";
 
-// カードごとのデータを配列で管理
-// ▼▼▼ 表示するカードをプロフィールカードのみに変更 ▼▼▼
+// カードごとのデータ
 const cardsData = [
   {
     id: 1,
@@ -21,24 +21,7 @@ const cardsData = [
       { name: "Instagram", url: "#", icon: <FaInstagram /> },
     ],
   },
-  // {
-  //   id: 2,
-  //   type: "content",
-  //   title: "News",
-  //   description: "最新のお知らせやブログ記事などをこちらに掲載します。日々の学習の進捗や、新しい技術についての考察などを更新していく予定です。",
-  //   icon: <FaNewspaper />,
-  //   link: "#news",
-  // },
-  // {
-  //   id: 3,
-  //   type: "content",
-  //   title: "Works",
-  //   description: "これまでに制作した作品をこちらで紹介します。Webサイトやアプリケーションなど、様々なプロジェクトを掲載予定です。",
-  //   icon: <FaPaintbrush />,
-  //   link: "#works",
-  // },
 ];
-// ▲▲▲ 表示するカードをプロフィールカードのみに変更 ▲▲▲
 
 // News記事のダミーデータ
 const newsItems = [
@@ -87,7 +70,6 @@ const worksItems = [
   }
 ];
 
-
 // propsの型定義
 interface PortfolioCardProps {
   card: (typeof cardsData)[0];
@@ -95,7 +77,6 @@ interface PortfolioCardProps {
 
 // ポートフォリオカードコンポーネント
 const PortfolioCard = ({ card }: PortfolioCardProps) => {
-  // プロフィールカードの場合
   if (card.type === "profile") {
     return (
       <div className="portfolio-card">
@@ -128,72 +109,158 @@ const PortfolioCard = ({ card }: PortfolioCardProps) => {
       </div>
     );
   }
-
-  // News, Worksなどのコンテンツカードの場合
-  // この部分は現在使用されませんが、将来の拡張のために残しておきます
-  return (
-    <a href={(card as any).link} className="portfolio-card content-card">
-      <article className="content-introduction">
-        <div className="content-icon">{(card as any).icon}</div>
-        <h1>{(card as any).title}</h1>
-        <p>{(card as any).description}</p>
-      </article>
-    </a>
-  );
+  return null;
 };
 
 
 // ページの本体
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  if (isLoading) {
-    return (
-      <div className="portfolio-container" style={{ height: "100vh" }}>
-        <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
-      </div>
-    );
-  }
+  // ローディング完了時の処理
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    // ローディング画面が消えるアニメーションと競合しないよう、少し遅れてアニメーションを開始
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+  };
+
+  // メインコンテナ（プロフィールカード）のアニメーション設定
+  const mainContainerVariants = {
+    center: {
+      alignItems: 'center',
+      minHeight: '100vh',
+      paddingTop: '2rem',
+    },
+    top: {
+      alignItems: 'flex-start',
+      minHeight: 'auto',
+      paddingTop: '10rem',
+      transition: {
+        duration: 1.0,
+        ease: 'easeInOut'
+      }
+    }
+  };
+
+  // NewsとWorksセクションのコンテナ用アニメーション設定
+  const contentVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+        staggerChildren: 0.2 // 子要素を順番に表示
+      }
+    }
+  };
+  
+    // NewsとWorksセクション内の各カードのアニメーション設定
+    const itemVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: { opacity: 1, y: 0 }
+    }
 
   return (
     <>
-      <main className="portfolio-container">
+      {/* ローディングスクリーン */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            className="portfolio-container"
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              zIndex: 100, // 最前面に表示
+              backgroundColor: 'var(--background)'
+            }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LoadingScreen onLoadingComplete={handleLoadingComplete} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* プロフィールカード */}
+      <motion.main
+        className="portfolio-container"
+        variants={mainContainerVariants}
+        initial="center"
+        animate={isLoaded ? "top" : "center"}
+      >
         {cardsData.map((card) => (
           <PortfolioCard key={card.id} card={card} />
         ))}
-      </main>
+      </motion.main>
+      
+      {/* News & Works セクション */}
+      <AnimatePresence>
+        {isLoaded && (
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={contentVariants}
+          >
+            {/* Newsセクション */}
+            <motion.section
+              id="news"
+              className="portfolio-container"
+              style={{ backgroundColor: '#1f2937', minHeight: 'auto', paddingBlock: '5rem', flexDirection: 'column' }}
+            >
+              <h1 style={{ fontSize: '3rem', color: 'white', width: '100%', textAlign: 'center', marginBottom: '2rem' }}>News</h1>
+              <div style={{display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', alignItems: 'center'}}>
+                {newsItems.map((item) => (
+                  <motion.article
+                    key={item.id}
+                    className="portfolio-card"
+                    style={{flexDirection: 'column', alignItems: 'flex-start', gap: '1rem', width: 'clamp(350px, 80%, 700px)', aspectRatio: 'auto', padding: '2rem'}}
+                    variants={itemVariants}
+                  >
+                     <h2 style={{fontSize: '4cqw', fontWeight: 'bold'}}>{item.title}</h2>
+                     <time style={{fontSize: '2.5cqw', color: '#d1d5db'}}>{item.date}</time>
+                     <p style={{fontSize: '2.8cqw', textAlign: 'left', lineHeight: 1.6}}>{item.content}</p>
+                  </motion.article>
+                ))}
+              </div>
+            </motion.section>
 
-      {/* Newsセクション */}
-      <section id="news" className="portfolio-container" style={{ backgroundColor: '#1f2937', minHeight: 'auto', paddingBlock: '5rem', flexDirection: 'column' }}>
-        <h1 style={{ fontSize: '3rem', color: 'white', width: '100%', textAlign: 'center', marginBottom: '2rem' }}>News</h1>
-        <div style={{display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', alignItems: 'center'}}>
-          {newsItems.map((item) => (
-            <article key={item.id} className="portfolio-card" style={{flexDirection: 'column', alignItems: 'flex-start', gap: '1rem', width: 'clamp(350px, 80%, 700px)', aspectRatio: 'auto', padding: '2rem'}}>
-               <h2 style={{fontSize: '4cqw', fontWeight: 'bold'}}>{item.title}</h2>
-               <time style={{fontSize: '2.5cqw', color: '#d1d5db'}}>{item.date}</time>
-               <p style={{fontSize: '2.8cqw', textAlign: 'left', lineHeight: 1.6}}>{item.content}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Worksセクション */}
-      <section id="works" className="portfolio-container" style={{ backgroundColor: '#111827', minHeight: 'auto', paddingBlock: '5rem', flexDirection: 'column' }}>
-        <h1 style={{ fontSize: '3rem', color: 'white', width: '100%', textAlign: 'center', marginBottom: '2rem' }}>Works</h1>
-        <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', width: '100%'}}>
-          {worksItems.map((item) => (
-            <a href={item.link} key={item.id} className="portfolio-card" style={{flexDirection: 'column', alignItems: 'stretch', justifyContent: 'flex-start', gap: '0', padding: '0', textDecoration: 'none', color: 'white'}}>
-              <figure>
-                <Image src={item.imageUrl} alt={item.title} width={450} height={253} style={{width: '100%', height: 'auto', borderTopLeftRadius: '16px', borderTopRightRadius: '16px', objectFit: 'cover'}} />
-              </figure>
-               <div style={{padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1}}>
-                 <h2 style={{fontSize: '3.5cqw', fontWeight: 'bold', textAlign: 'left'}}>{item.title}</h2>
-                 <p style={{fontSize: '2.5cqw', textAlign: 'left', lineHeight: 1.5, color: '#d1d5db', marginTop: '0.5rem', flexGrow: 1}}>{item.description}</p>
-               </div>
-            </a>
-          ))}
-        </div>
-      </section>
+            {/* Worksセクション */}
+            <motion.section
+              id="works"
+              className="portfolio-container"
+              style={{ backgroundColor: '#111827', minHeight: 'auto', paddingBlock: '5rem', flexDirection: 'column' }}
+            >
+              <h1 style={{ fontSize: '3rem', color: 'white', width: '100%', textAlign: 'center', marginBottom: '2rem' }}>Works</h1>
+              <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', width: '100%'}}>
+                {worksItems.map((item) => (
+                  <motion.a
+                    href={item.link}
+                    key={item.id}
+                    className="portfolio-card"
+                    style={{flexDirection: 'column', alignItems: 'stretch', justifyContent: 'flex-start', gap: '0', padding: '0', textDecoration: 'none', color: 'white'}}
+                    variants={itemVariants}
+                  >
+                    <figure>
+                      <Image src={item.imageUrl} alt={item.title} width={450} height={253} style={{width: '100%', height: 'auto', borderTopLeftRadius: '16px', borderTopRightRadius: '16px', objectFit: 'cover'}} />
+                    </figure>
+                     <div style={{padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1}}>
+                       <h2 style={{fontSize: '3.5cqw', fontWeight: 'bold', textAlign: 'left'}}>{item.title}</h2>
+                       <p style={{fontSize: '2.5cqw', textAlign: 'left', lineHeight: 1.5, color: '#d1d5db', marginTop: '0.5rem', flexGrow: 1}}>{item.description}</p>
+                     </div>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.section>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
