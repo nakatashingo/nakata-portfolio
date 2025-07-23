@@ -3,6 +3,7 @@ import { FaGithub, FaInstagram, FaXTwitter, FaNewspaper, FaPaintbrush } from "re
 import React from "react";
 
 // カードごとのデータを配列で管理
+// ▼▼▼ 表示するカードをプロフィールカードのみに変更 ▼▼▼
 const cardsData = [
   {
     id: 1,
@@ -17,23 +18,24 @@ const cardsData = [
       { name: "Instagram", url: "#", icon: <FaInstagram /> },
     ],
   },
-  {
-    id: 2,
-    type: "content",
-    title: "News",
-    description: "最新のお知らせやブログ記事などをこちらに掲載します。日々の学習の進捗や、新しい技術についての考察などを更新していく予定です。",
-    icon: <FaNewspaper />,
-    link: "#news",
-  },
-  {
-    id: 3,
-    type: "content",
-    title: "Works",
-    description: "これまでに制作した作品をこちらで紹介します。Webサイトやアプリケーションなど、様々なプロジェクトを掲載予定です。",
-    icon: <FaPaintbrush />,
-    link: "#works", // 変更点：アンカーリンクに変更
-  },
+  // {
+  //   id: 2,
+  //   type: "content",
+  //   title: "News",
+  //   description: "最新のお知らせやブログ記事などをこちらに掲載します。日々の学習の進捗や、新しい技術についての考察などを更新していく予定です。",
+  //   icon: <FaNewspaper />,
+  //   link: "#news",
+  // },
+  // {
+  //   id: 3,
+  //   type: "content",
+  //   title: "Works",
+  //   description: "これまでに制作した作品をこちらで紹介します。Webサイトやアプリケーションなど、様々なプロジェクトを掲載予定です。",
+  //   icon: <FaPaintbrush />,
+  //   link: "#works",
+  // },
 ];
+// ▲▲▲ 表示するカードをプロフィールカードのみに変更 ▲▲▲
 
 // News記事のダミーデータ
 const newsItems = [
@@ -57,7 +59,7 @@ const newsItems = [
   },
 ];
 
-// ▼▼▼ Worksのダミーデータを追加 ▼▼▼
+// Worksのダミーデータ
 const worksItems = [
   {
     id: 1,
@@ -81,7 +83,6 @@ const worksItems = [
     link: "#",
   }
 ];
-// ▲▲▲ Worksのダミーデータを追加 ▲▲▲
 
 
 // propsの型定義
@@ -126,12 +127,13 @@ const PortfolioCard = ({ card }: PortfolioCardProps) => {
   }
 
   // News, Worksなどのコンテンツカードの場合
+  // この部分は現在使用されませんが、将来の拡張のために残しておきます
   return (
-    <a href={card.link} className="portfolio-card content-card">
+    <a href={(card as any).link} className="portfolio-card content-card">
       <article className="content-introduction">
-        <div className="content-icon">{card.icon}</div>
-        <h1>{card.title}</h1>
-        <p>{card.description}</p>
+        <div className="content-icon">{(card as any).icon}</div>
+        <h1>{(card as any).title}</h1>
+        <p>{(card as any).description}</p>
       </article>
     </a>
   );
@@ -162,7 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ▼▼▼ Worksセクションを追加 ▼▼▼ */}
+      {/* Worksセクション */}
       <section id="works" className="portfolio-container" style={{ backgroundColor: '#111827', minHeight: 'auto', paddingBlock: '5rem', flexDirection: 'column' }}>
         <h1 style={{ fontSize: '3rem', color: 'white', width: '100%', textAlign: 'center', marginBottom: '2rem' }}>Works</h1>
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', width: '100%'}}>
@@ -179,7 +181,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-      {/* ▲▲▲ Worksセクションを追加 ▲▲▲ */}
     </>
   );
 }

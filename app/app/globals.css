@@ -70,7 +70,7 @@ body {
   padding: 2cqw;
   
   /* カードの横幅を柔軟に調整 (最小350px, 基本30%, 最大450px) */
-  width: clamp(350px, 30%, 450px);
+  width: clamp(350px, 60%, 600px);
   
   aspect-ratio: 16 / 9;
   
