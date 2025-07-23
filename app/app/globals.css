@@ -44,113 +44,97 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; 
-  flex-wrap: nowrap;
-  gap: 0;
   width: 100%;
   min-height: 100vh;
   padding: 2rem;
-  background-color: #0a0a0a;
+  background-color: #111827;
 }
 
 .portfolio-card {
+  /* ▼▼▼ コンテナクエリの設定 ▼▼▼ */
+  container-type: inline-size; /* この要素を幅基準のコンテナとして定義 */
+  container-name: portfolio-card; /* コンテナに名前を付ける */
+
   display: flex;
-  flex-direction: row;
+  align-items: center;
   background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
   color: white;
-  border-radius: 12px;
-  padding: 2.5rem;
+  border-radius: 16px;
+  padding: 5cqw; /* パディングをカードの幅に連動させる */
   
-  width: 100%;
-  max-width: 800px;
-  min-width: auto;
-  aspect-ratio: 65 / 40; /* ← 縦横比を65:40に設定しました */
-
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  gap: 2rem;
+  /* カード自体の大きさを画面に応じて変更 */
+  width: 90%;
+  max-width: 750px;
+  
+  aspect-ratio: 16 / 9; /* 縦横比を常に65:40に固定 */
+  
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  gap: 5cqw;
 }
 
 .introduction {
-  flex: 3; 
+  flex: 2; 
   display: flex;
   flex-direction: column;
-  text-align: center;
-  overflow: hidden; 
 }
 
+/* ▼▼▼ コンテナ相対単位(cqw)でフォントサイズを指定 ▼▼▼ */
 .introduction h1 {
-  font-size: 2.25rem; 
-  font-weight: 600;
-  margin-bottom: 0.25rem;
+  font-size: 5.5cqw; /* カード幅の5.5% */
+  font-weight: 700;
+  text-align: center;
 }
 
 .introduction h2 {
-  font-size: 1rem;
+  font-size: 2.5cqw; /* カード幅の2.5% */
   font-weight: 400;
-  opacity: 0.9;
-  margin-bottom: 1.5rem;
+  color: #d1d5db;
+  text-align: center;
+  margin-bottom: 5cqw;
 }
 
 .introduction p {
+  font-size: 2.2cqw; /* カード幅の2.2% */
   text-align: left;
   line-height: 1.6;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  color: #e5e7eb;
   flex-grow: 1; 
 }
 
 .social-icons {
   display: flex;
   justify-content: center;
-  gap: 2.5rem;
-  padding-top: 1rem;
+  gap: 8cqw; /* ギャップもカード幅に連動 */
+  margin-top: 3cqw;
 }
 
 .social-icons a {
   color: white;
-  transition: transform 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 }
 
 .social-icons a:hover {
-  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* react-iconsのSVGサイズをコンテナ基準で指定 */
+.social-icons svg {
+  width: 6cqw;
+  height: 6cqw;
 }
 
 .profile-icon {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  order: 0;
-  padding-bottom: 0;
 }
 
+/* 画像サイズをコンテナ基準で指定 */
 .profile-icon img {
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
+  border-radius: 100%;
+  width: 35cqw;
+  height: 35cqw;
   object-fit: cover;
   border: none;
-}
-
-/* スマートフォン向けのレスポンシブ設定 */
-@media (max-width: 768px) {
-  .portfolio-container {
-    padding: 1rem;
-    align-items: flex-start;
-  }
-
-  .portfolio-card {
-    flex-direction: column;
-    padding: 2rem;
-    width: 90%; 
-    aspect-ratio: unset; /* スマホでは縦横比の固定を解除 */
-  }
-
-  .introduction {
-    order: 2;
-  }
-
-  .profile-icon {
-    order: 1;
-    margin-bottom: 1.5rem;
-  }
 }

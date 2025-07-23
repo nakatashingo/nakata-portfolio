@@ -4,24 +4,24 @@ import { FaGithub, FaInstagram, FaXTwitter } from "react-icons/fa6";
 // 表示するデータをオブジェクトとして管理
 const portfolioData = {
   name: "中田 慎吾",
-  title: "Web Developer", // 画像に合わせて変更
+  title: "Web Developer",
   description: "初めまして、中田慎吾です！最近、フロントとエンドの勉強を始めました。HTML, CSSで基礎を学び、Reactの習得にも励んでいます。学習のまとめとして、ポートフォリオサイトを制作中です。",
-  imageUrl: "https://placehold.jp/200x200.png",
+  imageUrl: "https://placehold.jp/200x200.png", // 画像URLは適宜変更してください
   socialLinks: [
     {
       name: "GitHub",
       url: "https://github.com/nakatashingo",
-      icon: <FaGithub size={28} />, // アイコンサイズを調整
+      icon: <FaGithub />, // sizeプロパティを削除
     },
     {
       name: "X (Twitter)",
       url: "#", // ご自身のURLを入力してください
-      icon: <FaXTwitter size={28} />,
+      icon: <FaXTwitter />, // sizeプロパティを削除
     },
     {
       name: "Instagram",
       url: "#", // ご自身のURLを入力してください
-      icon: <FaInstagram size={28} />,
+      icon: <FaInstagram />, // sizeプロパティを削除
     },
   ],
 };
@@ -51,7 +51,7 @@ const PortfolioCard = () => (
       <Image
         src={portfolioData.imageUrl}
         alt="My Icon"
-        width={200} // 画像サイズを200pxに戻す
+        width={200} // widthとheightはCSSで制御するためこの値は使われませんが、必須プロパティなので残します
         height={200}
       />
     </figure>
@@ -63,7 +63,6 @@ const PortfolioCard = () => (
 export default function Home() {
   return (
     <main className="portfolio-container">
-      {/* カードを1つだけ表示するように戻しました */}
       <PortfolioCard />
     </main>
   );
