@@ -1,55 +1,70 @@
-"use client"; // useState, useEffect を使うため
-
 import Image from "next/image";
-import { FaGithub, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { useState, useEffect } from "react";
-import LoadingScreen from "@/app/components/LoadingScreen"; // 作成したコンポーネントをインポート
+import { FaGithub, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
+// 表示するデータをオブジェクトとして管理
+const portfolioData = {
+  name: "中田 慎吾",
+  title: "Web Developer", // 画像に合わせて変更
+  description: "初めまして、中田慎吾です！最近、フロントとエンドの勉強を始めました。HTML, CSSで基礎を学び、Reactの習得にも励んでいます。学習のまとめとして、ポートフォリオサイトを制作中です。",
+  imageUrl: "https://placehold.jp/200x200.png",
+  socialLinks: [
+    {
+      name: "GitHub",
+      url: "https://github.com/nakatashingo",
+      icon: <FaGithub size={28} />, // アイコンサイズを調整
+    },
+    {
+      name: "X (Twitter)",
+      url: "#", // ご自身のURLを入力してください
+      icon: <FaXTwitter size={28} />,
+    },
+    {
+      name: "Instagram",
+      url: "#", // ご自身のURLを入力してください
+      icon: <FaInstagram size={28} />,
+    },
+  ],
+};
+
+// ポートフォリオカード部分をコンポーネントとして分離
+const PortfolioCard = () => (
+  <section className="portfolio-card">
+    <article className="introduction">
+      <h1>{portfolioData.name}</h1>
+      <h2>{portfolioData.title}</h2>
+      <p>{portfolioData.description}</p>
+      <nav className="social-icons">
+        {portfolioData.socialLinks.map((social) => (
+          <a
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.name}
+          >
+            {social.icon}
+          </a>
+        ))}
+      </nav>
+    </article>
+    <figure className="profile-icon">
+      <Image
+        src={portfolioData.imageUrl}
+        alt="My Icon"
+        width={200} // 画像サイズを200pxに戻す
+        height={200}
+      />
+    </figure>
+  </section>
+);
+
+
+// ページの本体
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // LoadingScreenコンポーネントから呼ばれる関数
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-
-  // ローディング画面を表示する場合
-  if (isLoading) {
-    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
-  }
-
-  // ローディング完了後、ポートフォリオ本体を表示
   return (
-    <div className="app">
-      <div className="card">
-        <div className="Introduction">
-          <div className="myName">
-            <p>中田　慎吾</p>
-          </div>
-          <div className="subName">
-            <p>フロントエンド勉強中</p>
-          </div>
-          <div className="description">
-            <p>初めまして，中田慎吾です！最近，フロントエンドの勉強を始めました．HTML，CSSで基礎を学び，Reactの習得にも励んでいます．学習のまとめとして，ポートフォリオサイトを制作中です．</p>
-          </div>
-          <div className="contactIcons">
-            <div className="contactIconImage">
-              <a href="https://github.com/nakatashingo" target="_blank" rel="noopener noreferrer"><FaGithub color="FFFFFF" size="60%"/></a>
-            </div>
-            <div className="contactIconImage">
-              <a target="_blank" rel="noopener noreferrer"><FaXTwitter color="FFFFFF" size="60%"/></a>
-            </div>
-            <div className="contactIconImage">
-              <a target="_blank" rel="noopener noreferrer"><FaInstagram color="FFFFFF" size="60%"/></a>
-            </div>
-          </div>
-        </div>
-        <div className="myIcon">
-          {/* Next.jsのImageコンポーネントの利用を推奨します */}
-          <Image src="https://placehold.jp/200x200.png" alt="My Icon" width={200} height={200} style={{ borderRadius: '100%' }} />
-        </div>
-      </div>
-    </div>
+    <main className="portfolio-container">
+      {/* カードを1つだけ表示するように戻しました */}
+      <PortfolioCard />
+    </main>
   );
 }
