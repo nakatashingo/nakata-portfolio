@@ -60,10 +60,10 @@ body {
   background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
   color: white;
   border-radius: 16px;
-  padding: 5cqw; /* パディングをカードの幅に連動させる */
+  padding: 2cqw; /* パディングをカードの幅に連動させる */
   
   /* カード自体の大きさを画面に応じて変更 */
-  width: 90%;
+  width: 30%;
   max-width: 750px;
   
   aspect-ratio: 16 / 9; /* 縦横比を常に65:40に固定 */
@@ -86,7 +86,7 @@ body {
 }
 
 .introduction h2 {
-  font-size: 2.5cqw; /* カード幅の2.5% */
+  font-size: 3cqw; /* カード幅の3% */
   font-weight: 400;
   color: #d1d5db;
   text-align: center;
@@ -94,7 +94,7 @@ body {
 }
 
 .introduction p {
-  font-size: 2.2cqw; /* カード幅の2.2% */
+  font-size: 2.5cqw; /* カード幅の2.5% */
   text-align: left;
   line-height: 1.6;
   color: #e5e7eb;
