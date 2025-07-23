@@ -103,7 +103,7 @@ body {
 }
 
 .introduction p {
-  font-size: 2.5cqw;
+  font-size: 2.8cqw;
   text-align: left;
   line-height: 1.6;
   color: #e5e7eb;
@@ -165,9 +165,10 @@ body {
 }
 
 .content-introduction p {
-  font-size: 2.5cqw;
+  font-size: 4cqw;
   color: #e5e7eb;
   line-height: 1.5;
+  text-align: left;
   padding: 0 1cqw;
 }
 
