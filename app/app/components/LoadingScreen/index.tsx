@@ -18,8 +18,6 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [cards] = useState<Card[]>(
     Array.from({ length: cardCount }, (_, i) => ({
       id: i + 1,
-      // 手順1で配置した画像のパスを指定
-      image: "/images/card_back.png", 
     }))
   );
 

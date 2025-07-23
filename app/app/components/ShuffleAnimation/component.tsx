@@ -26,18 +26,19 @@ const Component = ({
       x: 0,
       y: 0,
       rotate: 0,
+      scale: 0, // 初期状態をスケール0に
     },
     shuffling: {
       x: [
+        Math.random() * 400 - 200,
+        Math.random() * 500 - 250,
+        Math.random() * 400 - 200,
+        0,
+      ],
+      y: [
         Math.random() * 200 - 100,
         Math.random() * 300 - 150,
         Math.random() * 200 - 100,
-        piles[index % 3] * 150 - 150,
-      ],
-      y: [
-        Math.random() * 100 - 50,
-        Math.random() * 150 - 75,
-        Math.random() * 100 - 50,
         0,
       ],
       rotate: [
@@ -46,11 +47,13 @@ const Component = ({
         Math.random() * 30 - 15,
         0,
       ],
+      scale: 0.8, // シャッフル中は少し小さく
     },
     piled: {
-      x: piles[index % 3] * 150 - 150,
+      x: 0,
       y: 0,
       rotate: 0,
+      scale: 1, // 最終的に元のサイズに
     },
   });
 
@@ -60,7 +63,7 @@ const Component = ({
   // 関数の戻り値の型として : Transition を指定
   const transition = (index: number): Transition => ({
     duration: isShuffling ? 3 : 0.5,
-    delay: isShuffling ? index * 0.05 * Math.exp(-index / 20) : 0,
+    delay: isShuffling ? index * 0.02 : 0, // シンプルなディレイに変更
     ease: "easeInOut",
   });
 
@@ -77,10 +80,7 @@ const Component = ({
           transition={transition(index)}
           variants={variants(index)}
         >
-          <div
-            className={styles.cardImage}
-            style={{ backgroundImage: `url(${card.image})` }}
-          ></div>
+          {/* 子要素を空にして無地のカードにする */}
         </motion.div>
       ))}
     </div>

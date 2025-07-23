@@ -1,6 +1,5 @@
 interface Card {
   id: number;
-  image: string;
 }
 
 interface ShuffleAnimationProps {

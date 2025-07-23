@@ -1,6 +1,9 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import { FaGithub, FaInstagram, FaXTwitter, FaNewspaper, FaPaintbrush } from "react-icons/fa6";
-import React from "react";
+import LoadingScreen from "./components/LoadingScreen";
 
 // カードごとのデータを配列で管理
 // ▼▼▼ 表示するカードをプロフィールカードのみに変更 ▼▼▼
@@ -142,6 +145,16 @@ const PortfolioCard = ({ card }: PortfolioCardProps) => {
 
 // ページの本体
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  if (isLoading) {
+    return (
+      <div className="portfolio-container" style={{ height: "100vh" }}>
+        <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
+      </div>
+    );
+  }
+
   return (
     <>
       <main className="portfolio-container">

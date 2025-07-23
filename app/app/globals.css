@@ -190,3 +190,26 @@ body {
 #works .portfolio-card {
   width: clamp(350px, 30%, 450px);
 }
+
+/* --- リロードボタンのスタイル --- */
+.reload-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+}
+.reload-button:hover {
+  transform: scale(1.1) rotate(90deg);
+}

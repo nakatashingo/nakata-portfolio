@@ -5,24 +5,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: visible;
+  overflow: hidden; /* カードがコンテナからはみ出ないように */
 }
 
 .card {
   position: absolute;
-  width: 100px;
-  height: 150px;
+  width: 350px;
+  aspect-ratio: 16 / 9;
   perspective: 1000px;
-}
-
-.cardImage {
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transform-origin: center center;
+  /* カードのデザインを適用 */
+  background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
 }
 
 .clickable {
