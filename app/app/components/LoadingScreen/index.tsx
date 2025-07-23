@@ -14,7 +14,7 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   >("initial");
   
   // 表示するカードの枚数
-  const cardCount = 78;
+  const cardCount = 30;
   const [cards] = useState<Card[]>(
     Array.from({ length: cardCount }, (_, i) => ({
       id: i + 1,

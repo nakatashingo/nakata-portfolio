@@ -1,7 +1,7 @@
 .shuffleContainer {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +11,7 @@
 .card {
   position: absolute;
   width: 350px;
+  width: clamp(350px, 60%, 600px);
   aspect-ratio: 16 / 9;
   perspective: 1000px;
   /* カードのデザインを適用 */
