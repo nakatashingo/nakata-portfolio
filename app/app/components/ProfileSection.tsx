@@ -1,5 +1,6 @@
 import type { Profile } from "@/app/types";
 import Reveal from "@/app/components/Reveal";
+import SocialIcon from "@/app/components/SocialIcon";
 
 interface ProfileSectionProps {
   profile: Profile;
@@ -22,8 +23,9 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[0.9375rem] font-medium text-white transition-opacity hover:opacity-80"
+                className="flex items-center gap-1.5 text-[0.9375rem] font-medium text-white transition-opacity hover:opacity-80"
               >
+                <SocialIcon icon={social.icon} className="h-4 w-4" />
                 {social.name}
               </a>
             ))}

@@ -1,4 +1,5 @@
 import type { SocialLink } from "@/app/types";
+import SocialIcon from "@/app/components/SocialIcon";
 
 interface FooterProps {
   socialLinks: SocialLink[];
@@ -14,8 +15,9 @@ const Footer = ({ socialLinks }: FooterProps) => (
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[0.8125rem] text-gray-500 transition-colors hover:text-accent"
+          className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 transition-colors hover:text-accent"
         >
+          <SocialIcon icon={social.icon} className="h-3.5 w-3.5" />
           {social.shortName ?? social.name}
         </a>
       ))}

@@ -8,8 +8,8 @@ export const profile: Profile = {
   avatarInitial: "慎",
   avatarNote: "※ 写真差し替え予定",
   socialLinks: [
-    { name: "GitHub", url: "https://github.com/nakatashingo" },
-    { name: "X (Twitter)", shortName: "X", url: "https://x.com/1qaz_n" },
-    { name: "Instagram", url: "https://www.instagram.com/shingo6271/" },
+    { name: "GitHub", icon: "github", url: "https://github.com/nakatashingo" },
+    { name: "X (Twitter)", shortName: "X", icon: "x", url: "https://x.com/1qaz_n" },
+    { name: "Instagram", icon: "instagram", url: "https://www.instagram.com/shingo6271/" },
   ],
 };

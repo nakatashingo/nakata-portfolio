@@ -1,8 +1,11 @@
 // --- プロフィール ---
+export type SocialIconKey = "github" | "x" | "instagram";
+
 export interface SocialLink {
   name: string;
   /** フッターなど、より短い表記が欲しい場所で使う省略ラベル(未指定なら name を使う) */
   shortName?: string;
+  icon: SocialIconKey;
   url: string;
 }
 
