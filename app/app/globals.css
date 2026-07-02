@@ -1,215 +1,82 @@
 @import "tailwindcss";
 
+/*
+ * カラートークン
+ * サイトは常にダークな配色で固定(OSのライト/ダーク設定には追従しない)。
+ * ページ背景・セクション面(surface)・文字色をすべて同じ変数から取ることで、
+ * セクションごとに背景色がズレて隙間が生じる問題を構造的に防ぐ。
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card-gradient-start: #024945;
-  --card-gradient-end: #12A89C;
-}
+  --background: #0a0a0a;
+  --foreground: #ededed;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --surface: #1f2937;
+  --surface-alt: #111827;
+  --surface-foreground: #f9fafb;
+  --muted: #d1d5db;
+
+  --accent: #12a89c;
+
+  --card-gradient-start: #024945;
+  --card-gradient-end: #12a89c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-card-gradient-start: var(--card-gradient-start);
+  --color-card-gradient-end: var(--card-gradient-end);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/*
+ * box-sizing/margin/paddingの全称リセットはTailwindのPreflightが`@layer base`内で
+ * 既に行っている。ここで同じことをレイヤー外(unlayered)に書くと、CSS Cascade Layersの
+ * 仕様上どのレイヤーの宣言よりも常に優先されてしまい、Tailwindのmargin/padding系
+ * ユーティリティ(mx-auto, mb-*, px-*, p-* など)がサイト全体で効かなくなる。
+ * html/body側の指定も、将来ユーティリティと衝突しないよう base レイヤーに置く。
+ */
+@layer base {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* 固定ヘッダーの高さ分、アンカー先が隠れないように余白を確保 */
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  }
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+/*
+ * カードの見た目(グラデーション/角丸/影/hover)を一元管理する共有クラス。
+ * プロフィールカード・Worksカードで使い回し、見た目の重複定義を防ぐ。
+ */
+@layer components {
+  .card-surface {
+    background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
-/* ▼▼▼ スムーズスクロールを有効にする ▼▼▼ */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
-
-/* --- ポートフォリオスタイル --- */
-.portfolio-container {
-  display: flex;
-  flex-wrap: wrap; /* カードを折り返し表示 */
-  justify-content: center;
-  align-items: center; 
-  width: 100%;
-  min-height: 100vh;
-  padding: 2rem;
-  background-color: #111827;
-  gap: 2rem; /* カード間の余白 */
-}
-
-.portfolio-card {
-  /* ▼▼▼ コンテナクエリの設定 ▼▼▼ */
-  container-type: inline-size;
-  container-name: portfolio-card;
-
-  display: flex;
-  align-items: center;
-  background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
-  color: white;
-  border-radius: 16px;
-  padding: 2cqw;
-  
-  /* カードの横幅を柔軟に調整 (最小350px, 基本60%, 最大600px) */
-  width: clamp(350px, 60%, 600px);
-  
-  aspect-ratio: 16 / 9;
-  
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  gap: 5cqw;
-  text-decoration: none; /* aタグの下線を削除 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバーエフェクト用 */
-}
-
-/* カードにホバーエフェクトを追加 */
-.portfolio-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-}
-
-.introduction {
-  flex: 2; 
-  display: flex;
-  flex-direction: column;
-}
-
-/* ▼▼▼ コンテナ相対単位(cqw)でフォントサイズを指定 ▼▼▼ */
-.introduction h1 {
-  font-size: 5.5cqw;
-  font-weight: 700;
-  text-align: center;
-}
-
-.introduction h2 {
-  font-size: 3cqw;
-  font-weight: 400;
-  color: #d1d5db;
-  text-align: center;
-  margin-bottom: 5cqw;
-}
-
-.introduction p {
-  font-size: 2.8cqw;
-  text-align: left;
-  line-height: 1.6;
-  color: #e5e7eb;
-  flex-grow: 1; 
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 8cqw;
-  margin-top: 3cqw;
-}
-
-.social-icons a {
-  color: white;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.social-icons a:hover {
-  opacity: 0.8;
-}
-
-.social-icons svg {
-  width: 6cqw;
-  height: 6cqw;
-}
-
-.profile-icon {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-icon img {
-  border-radius: 100%;
-  width: 35cqw;
-  height: 35cqw;
-  object-fit: cover;
-  border: none;
-}
-
-/* --- News/Worksカード用のスタイルを追加 --- */
-.content-card {
-  justify-content: center;
-  text-align: center;
-}
-
-.content-introduction {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5cqw;
-}
-
-.content-introduction h1 {
-  font-size: 7cqw;
-  font-weight: 700;
-}
-
-.content-introduction p {
-  font-size: 4cqw;
-  color: #e5e7eb;
-  line-height: 1.5;
-  text-align: left;
-  padding: 0 1cqw;
-}
-
-.content-icon {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.content-icon svg {
-  width: 12cqw;
-  height: 12cqw;
-}
-
-/* ▼▼▼ Worksカードのサイズを元のサイズに戻すための上書きスタイル ▼▼▼ */
-#works .portfolio-card {
-  width: clamp(350px, 30%, 450px);
-}
-
-/* --- リロードボタンのスタイル --- */
-.reload-button {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(to right, var(--card-gradient-start), var(--card-gradient-end));
-  color: white;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: transform 0.2s ease-in-out;
-}
-.reload-button:hover {
-  transform: scale(1.1) rotate(90deg);
+  .card-surface:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  }
 }
