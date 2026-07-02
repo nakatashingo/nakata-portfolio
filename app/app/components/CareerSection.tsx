@@ -15,7 +15,7 @@ const CareerSection = ({ entries }: CareerSectionProps) => (
   <section id="career" className="px-8 py-22">
     <div className="mx-auto max-w-[720px]">
       <Reveal>
-        <h1 className="m-0 mb-2 text-center text-3xl font-extrabold tracking-[-0.02em]">経歴</h1>
+        <h1 className="m-0 mb-2 text-center text-3xl font-extrabold tracking-[-0.02em]">Career</h1>
         <p className="m-0 mb-12 text-center text-[0.9375rem] text-gray-400">学歴・活動</p>
       </Reveal>
       <Reveal delay={0.1}>
