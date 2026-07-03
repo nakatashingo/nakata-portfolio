@@ -3,7 +3,6 @@ const NAV_LINKS = [
   { href: "#activities", label: "Activities" },
   { href: "#skills", label: "Skills" },
   { href: "#works", label: "Works" },
-  { href: "#news", label: "News" },
 ];
 
 const Header = () => (

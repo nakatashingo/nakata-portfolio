@@ -35,14 +35,6 @@ export interface SkillCategory {
   items: string[];
 }
 
-// --- Newsセクション ---
-export interface NewsItem {
-  id: number;
-  title: string;
-  date: string;
-  content: string;
-}
-
 // --- Worksセクション ---
 export interface WorkItem {
   id: number;
