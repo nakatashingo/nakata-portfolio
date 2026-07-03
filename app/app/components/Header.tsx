@@ -1,6 +1,6 @@
 const NAV_LINKS = [
   { href: "#profile", label: "プロフィール" },
-  { href: "#career", label: "経歴" },
+  { href: "#activities", label: "経歴" },
   { href: "#skills", label: "スキル" },
   { href: "#works", label: "Works" },
   { href: "#news", label: "News" },

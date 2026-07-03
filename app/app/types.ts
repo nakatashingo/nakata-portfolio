@@ -18,8 +18,8 @@ export interface Profile {
   socialLinks: SocialLink[];
 }
 
-// --- 経歴セクション ---
-export interface CareerEntry {
+// --- Activities(経歴)セクション ---
+export interface ActivityEntry {
   id: number;
   /** 例: "2023.04 -" や "2022.04 - 2023.03" */
   period: string;

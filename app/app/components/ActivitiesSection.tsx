@@ -1,21 +1,21 @@
-import type { CareerEntry } from "@/app/types";
+import type { ActivityEntry } from "@/app/types";
 import Reveal from "@/app/components/Reveal";
 
-interface CareerSectionProps {
-  entries: CareerEntry[];
+interface ActivitiesSectionProps {
+  entries: ActivityEntry[];
 }
 
 // 学歴/その他活動でタイムラインのドットの色を軽く差別化する
-const DOT_COLOR: Record<CareerEntry["category"], string> = {
+const DOT_COLOR: Record<ActivityEntry["category"], string> = {
   education: "bg-accent",
   activity: "bg-white/70",
 };
 
-const CareerSection = ({ entries }: CareerSectionProps) => (
-  <section id="career" className="px-8 py-22">
+const ActivitiesSection = ({ entries }: ActivitiesSectionProps) => (
+  <section id="activities" className="px-8 py-22">
     <div className="mx-auto max-w-[720px]">
       <Reveal>
-        <h1 className="m-0 mb-2 text-center text-3xl font-extrabold tracking-[-0.02em]">Career</h1>
+        <h1 className="m-0 mb-2 text-center text-3xl font-extrabold tracking-[-0.02em]">Activities</h1>
         <p className="m-0 mb-12 text-center text-[0.9375rem] text-gray-400">学歴・活動</p>
       </Reveal>
       <Reveal delay={0.1}>
@@ -50,4 +50,4 @@ const CareerSection = ({ entries }: CareerSectionProps) => (
   </section>
 );
 
-export default CareerSection;
+export default ActivitiesSection;

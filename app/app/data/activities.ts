@@ -1,14 +1,14 @@
-import type { CareerEntry } from "@/app/types";
+import type { ActivityEntry } from "@/app/types";
 
 /**
- * 経歴セクションのデータ(実データ)。
- * 資格・受賞・サークル活動など(category: "activity")が別途あれば、この配列に追加してください。
+ * Activities(経歴)セクションのデータ(実データ)。
+ * 資格・受賞・サークル・学会・ハッカソン参加など(category: "activity")が別途あれば、この配列に追加してください。
  * - period: "2023.04 -" のような表記、または "2022.04 - 2023.03" のような期間表記
  * - category: "education"(学歴) または "activity"(その他の活動)
  * - description: 補足したい場合のみ記載(任意)
  * 古い項目ほど上に来るよう、日付の古い順に並べています。idは1から順番に振ってください。
  */
-export const careerEntries: CareerEntry[] = [
+export const activityEntries: ActivityEntry[] = [
   {
     id: 1,
     period: "2025.03",
