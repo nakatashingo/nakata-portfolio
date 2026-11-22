@@ -3,7 +3,7 @@ import type { SkillCategory } from "@/app/types";
 export const skillCategories: SkillCategory[] = [
   {
     label: "言語",
-    items: ["HTML", "CSS", "JavaScript", "TypeScript"],
+    items: ["HTML", "CSS", "JavaScript", "TypeScript", "Go", "Python", "C#"],
   },
   {
     label: "フレームワーク / ライブラリ",
@@ -11,6 +11,6 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     label: "ツール",
-    items: ["Git", "GitHub"],
+    items: ["Git", "GitHub", "Docker"],
   },
 ];
