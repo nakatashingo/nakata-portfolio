@@ -9,3 +9,11 @@ The site presents the owner through text and their projects, not a face photo.
 - Works: projects the owner built or co-built, each with a working outbound link.
   A link is not always GitHub (private repos link to a public write-up instead),
   so the link label is per item.
+
+## Visual direction (operator ruling 2026-11-22)
+
+Keep the current dark + teal mood, but polish it so it reads as this person's
+site rather than a template: Japanese-first typography, structure only where the
+content has structure (the activities timeline is a sequence; works are not),
+one orchestrated motion moment in the hero instead of fade-ins everywhere, and
+the strongest work (Agent Agency) featured. See PF-002.

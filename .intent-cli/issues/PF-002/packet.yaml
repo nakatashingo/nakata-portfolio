@@ -1,0 +1,55 @@
+implementation_issue_packet:
+  issue_title: "PF-002 Polish visual design while keeping the dark teal mood"
+  issue_kind: feature
+  source_execution_unit: PF-002
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/globals.css app/app/layout.tsx app/app/components app/app/data/works.ts app/app/types.ts
+  target_part: "Design tokens, typography, section layouts and hero motion of the single-page portfolio"
+  dependencies: [PF-001]
+  technical_baseline:
+    - "PF-001 merged on main (no hero avatar; WorkItem.linkLabel; Agent Agency entry first)"
+    - "Next.js 15 App Router, React 19, Tailwind CSS v4, Framer Motion"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "globals.css :root defines exactly the token values in the Design spec table; card-gradient tokens and .hero-grid are removed if unused."
+    - "layout.tsx loads only Zen Kaku Gothic New (400/500/700/900) and the page contains no monospace text, no all-caps labels, and no section index numbers."
+    - "SectionHeading takes { title, subtitle } and every section uses it; Reveal.tsx is deleted and unreferenced."
+    - "Hero matches the spec: no grid pattern, no Scroll cue, one teal glow, name + teal rule + romanized name + description + social links, left-aligned."
+    - "The hero intro animation is the only autoplay motion and is skipped under prefers-reduced-motion: reduce."
+    - "Activities keeps the timeline with a single legend instead of per-item category badges; dates use tabular-nums."
+    - "Skills renders as divided definition-list rows (no cards, no shadows)."
+    - "Works renders featured items (Agent Agency, featured: true) full width on --surface, and the others in a 2-column md grid without thumbnails, numbers, card backgrounds or hover lift."
+    - "Every link shows a visible focus-visible outline; no horizontal scroll at 360px."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Visual direction ruling recorded under 01-content before implementation."
+knowledge_updates:
+  intent_tree:
+    required: false
+    target_paths: []
+    summary: "Already written in the host before publish."
+  adr:
+    required: false
+    target_paths: []
+    decision_title: ""
+  diagram:
+    required: false
+    target_paths: []
+    diagram_type: none
+  docs:
+    required: false
+    target_paths: []
+    summary: ""
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
