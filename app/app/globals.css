@@ -7,18 +7,14 @@
  * セクションごとに背景色がズレて隙間が生じる問題を構造的に防ぐ。
  */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-
-  --surface: #1f2937;
-  --surface-alt: #111827;
-  --surface-foreground: #f9fafb;
-  --muted: #d1d5db;
-
+  --background: #0c1716;
+  --surface-alt: #11201e;
+  --surface: #162a28;
+  --line: #22403c;
+  --foreground: #e7efed;
+  --muted: #93a9a5;
   --accent: #12a89c;
-
-  --card-gradient-start: #024945;
-  --card-gradient-end: #12a89c;
+  --accent-text: #4fd1c3;
 }
 
 @theme inline {
@@ -26,13 +22,11 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-alt: var(--surface-alt);
-  --color-surface-foreground: var(--surface-foreground);
+  --color-line: var(--line);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
-  --color-card-gradient-start: var(--card-gradient-start);
-  --color-card-gradient-end: var(--card-gradient-end);
-  --font-sans: var(--font-geist-sans), var(--font-noto-sans-jp);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-text: var(--accent-text);
+  --font-sans: var(--font-zen-kaku), sans-serif;
 }
 
 /*
@@ -58,20 +52,70 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-geist-sans), var(--font-noto-sans-jp), Arial, Helvetica, sans-serif;
+    font-family: var(--font-zen-kaku), sans-serif;
+    font-size: 1rem;
+    line-height: 1.9;
+    overflow-wrap: break-word;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 /*
- * ヒーローやWorksサムネイルの背景に敷く薄いグリッド模様。
- * 端に向かってフェードさせ、背景として主張しすぎないようにする。
+ * 初回表示の動きはヒーローに限定する。
+ * 動きを許可した環境だけに適用し、軽減設定では最初から完成形を表示する。
  */
 @layer components {
-  .hero-grid {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-name {
+      animation: hero-name-in 0.6s ease-out both;
+    }
+
+    .hero-rule {
+      transform-origin: left;
+      animation: hero-rule-in 0.5s ease-out 0.35s both;
+    }
+
+    .hero-details {
+      animation: hero-details-in 0.6s ease-out 0.6s both;
+    }
+  }
+}
+
+@keyframes hero-name-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-rule-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes hero-details-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

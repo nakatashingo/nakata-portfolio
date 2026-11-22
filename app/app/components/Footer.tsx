@@ -6,9 +6,9 @@ interface FooterProps {
 }
 
 const Footer = ({ socialLinks }: FooterProps) => (
-  <footer className="border-t border-white/8">
+  <footer className="border-t border-line">
     <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-4 px-6 py-8 sm:px-8">
-      <span className="text-[0.8125rem] text-gray-500">© 2026 Shingo Nakata</span>
+      <span className="text-[0.8125rem] text-muted">© 2026 Shingo Nakata</span>
       <nav className="flex gap-5">
         {socialLinks.map((social) => (
           <a
@@ -16,7 +16,7 @@ const Footer = ({ socialLinks }: FooterProps) => (
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-[0.8125rem] text-gray-500 transition-colors hover:text-accent"
+            className="flex items-center gap-1.5 text-[0.8125rem] text-muted transition-colors hover:text-accent-text"
           >
             <SocialIcon icon={social.icon} className="h-3.5 w-3.5" />
             {social.shortName ?? social.name}

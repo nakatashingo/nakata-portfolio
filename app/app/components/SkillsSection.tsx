@@ -1,5 +1,4 @@
 import type { SkillCategory } from "@/app/types";
-import Reveal from "@/app/components/Reveal";
 import SectionHeading from "@/app/components/SectionHeading";
 
 interface SkillsSectionProps {
@@ -7,28 +6,24 @@ interface SkillsSectionProps {
 }
 
 const SkillsSection = ({ categories }: SkillsSectionProps) => (
-  <section id="skills" className="border-y border-white/6 bg-surface-alt px-6 py-24 sm:px-8">
-    <div className="mx-auto max-w-[1080px]">
-      <SectionHeading index="02" title="Skills" subtitle="使用技術" />
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {categories.map((category, index) => (
-          <Reveal key={category.label} delay={index * 0.08} className="h-full">
-            <div className="flex h-full flex-col gap-5 rounded-2xl border border-white/8 bg-background/60 p-7 transition-colors hover:border-accent/40">
-              <h3 className="m-0 text-sm font-bold text-gray-300">{category.label}</h3>
-              <div className="flex flex-wrap gap-2">
+  <section id="skills" className="border-y border-line bg-surface-alt py-24">
+    <div className="mx-auto max-w-[1080px] px-6 sm:px-8">
+      <SectionHeading title="Skills" subtitle="使用技術" />
+      {/* 技術の分類を定義リストで示し、カードではなく行の区切りで整理する */}
+      <dl className="m-0 divide-y divide-line">
+        {categories.map((category) => (
+          <div key={category.label} className="grid gap-4 py-7 first:pt-0 last:pb-0 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-8">
+            <dt className="text-[0.9375rem] font-medium text-muted">{category.label}</dt>
+            <dd className="m-0 min-w-0">
+              <ul className="m-0 flex list-none flex-wrap gap-x-6 gap-y-2 p-0">
                 {category.items.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-sm font-medium text-foreground"
-                  >
-                    {item}
-                  </span>
+                  <li key={item} className="font-medium">{item}</li>
                 ))}
-              </div>
-            </div>
-          </Reveal>
+              </ul>
+            </dd>
+          </div>
         ))}
-      </div>
+      </dl>
     </div>
   </section>
 );
