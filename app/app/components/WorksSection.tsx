@@ -1,3 +1,4 @@
+import RevealObserver from "@/app/components/RevealObserver";
 import type { WorkItem } from "@/app/types";
 import WorkCard from "@/app/components/WorkCard";
 import SectionHeading from "@/app/components/SectionHeading";
@@ -13,6 +14,7 @@ const WorksSection = ({ items }: WorksSectionProps) => {
 
   return (
     <section id="works" className="py-24">
+      <RevealObserver sectionId="works" />
       <div className="mx-auto max-w-[1080px] px-6 sm:px-8">
         <SectionHeading title="Works" subtitle="制作物" />
         <div className="flex flex-col gap-12">

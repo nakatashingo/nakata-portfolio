@@ -1,4 +1,5 @@
 import type { ActivityEntry } from "@/app/types";
+import Timeline from "@/app/components/Timeline";
 import SectionHeading from "@/app/components/SectionHeading";
 
 interface ActivitiesSectionProps {
@@ -26,7 +27,7 @@ const ActivitiesSection = ({ entries }: ActivitiesSectionProps) => (
         </li>
       </ul>
       {/* 最後の項目だけ線を透明にし、連続したタイムラインを最後のドットで止める */}
-      <ol className="ml-1.5 flex max-w-[760px] list-none flex-col">
+      <Timeline>
         {entries.map((entry, index) => {
           const isLast = index === entries.length - 1;
           return (
@@ -34,7 +35,7 @@ const ActivitiesSection = ({ entries }: ActivitiesSectionProps) => (
               key={entry.id}
               className={`relative border-l py-0.5 pl-8 ${isLast ? "border-transparent pb-0" : "border-line pb-10"}`}
             >
-              <span aria-hidden className={`absolute top-2 left-[-6px] h-[11px] w-[11px] rounded-full border-2 ${CATEGORY_DOT[entry.category]}`} />
+              <span aria-hidden data-timeline-dot className={`timeline-dot absolute top-2 left-[-6px] h-[11px] w-[11px] rounded-full border-2 ${CATEGORY_DOT[entry.category]}`} />
               <span className="sr-only">{entry.category === "education" ? "学歴" : "活動"}</span>
               <time className="text-[0.8125rem] text-accent-text tabular-nums">{entry.period}</time>
               <h3 className="m-0 mt-2 text-xl leading-[1.6] font-bold">{entry.title}</h3>
@@ -44,7 +45,7 @@ const ActivitiesSection = ({ entries }: ActivitiesSectionProps) => (
             </li>
           );
         })}
-      </ol>
+      </Timeline>
     </div>
   </section>
 );
