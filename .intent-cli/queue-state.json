@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T11:57:18.903747+00:00",
+  "updated_at": "2026-11-22T11:57:46.351389+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -61,6 +61,11 @@
         "implementation": ".intent-cli/issues/PF-003/implementation.md",
         "review_context": ".intent-cli/issues/PF-003/review-context.md",
         "yaml": ".intent-cli/issues/PF-003/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 5,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/5"
       },
       "worker_role": "builder",
       "review_role": "reviewer",
