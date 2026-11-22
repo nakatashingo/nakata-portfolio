@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T15:37:34.20939+00:00",
+  "updated_at": "2026-11-22T15:41:54.182465+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -168,7 +168,7 @@
     {
       "execution_unit": "PF-008",
       "title": "PF-008 Remove the skill-to-works popover",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -182,6 +182,7 @@
         "number": 15,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/15"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/16",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
