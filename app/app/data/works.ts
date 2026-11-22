@@ -3,7 +3,6 @@ import type { WorkItem } from "@/app/types";
 export const worksItems: WorkItem[] = [
   {
     id: 4,
-    featured: true,
     title: "Agent Agency（第5回 Agentic AI Hackathon with Google Cloud）",
     description:
       "第5回 Agentic AI Hackathon with Google Cloud にチーム「Agent Agency」として提出した作品。Slack の会話から繰り返される仕事を AI が見つけて任せ方を提案し、責任者が承認した範囲だけを AI の権限の上限として、LLM を使わないプログラムが毎回守らせる仕組みです。Cloud Run 上で Gemini と ADK を使って構築しました。",
