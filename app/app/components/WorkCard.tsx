@@ -36,7 +36,7 @@ const WorkCard = ({ item, index }: WorkCardProps) => (
           rel="noopener noreferrer"
           className="mt-2 inline-flex w-fit items-center gap-1 text-sm font-medium text-foreground transition-colors hover:text-accent"
         >
-          GitHubで見る
+          {item.linkLabel ?? "GitHubで見る"}
           <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
         </a>
       ) : (

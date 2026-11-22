@@ -15,7 +15,7 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
       className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]"
     />
 
-    <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col-reverse items-center justify-center gap-12 px-6 py-20 sm:px-8 md:flex-row md:justify-between">
+    <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
       <Reveal className="flex max-w-[600px] flex-col gap-6">
         <p className="m-0 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-gray-300">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -42,15 +42,6 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
             </a>
           ))}
         </nav>
-      </Reveal>
-
-      <Reveal delay={0.15} className="flex flex-col items-center gap-3">
-        <div className="rounded-full bg-gradient-to-br from-accent to-card-gradient-start p-[3px] shadow-[0_0_80px_rgba(18,168,156,0.35)]">
-          <div className="flex h-40 w-40 items-center justify-center rounded-full bg-surface-alt sm:h-56 sm:w-56">
-            <span className="text-5xl font-extrabold text-white/70 sm:text-6xl">{profile.avatarInitial}</span>
-          </div>
-        </div>
-        <span className="text-xs text-gray-500">{profile.avatarNote}</span>
       </Reveal>
     </div>
 
