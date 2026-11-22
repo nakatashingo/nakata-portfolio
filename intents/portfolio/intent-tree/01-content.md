@@ -15,11 +15,16 @@ The site presents the owner through text and their projects, not a face photo.
 Keep the current dark + teal mood, but polish it so it reads as this person's
 site rather than a template: Japanese-first typography, structure only where the
 content has structure (the activities timeline is a sequence; works are not),
-one orchestrated motion moment in the hero instead of fade-ins everywhere, and
-the strongest work (Agent Agency) featured. See PF-002.
+one orchestrated motion moment in the hero instead of fade-ins everywhere. See PF-002.
 
 ## Display name (operator ruling 2026-11-22)
 
 The site's display name is "Nakata Shingo" (family name first, romanized) in the
 hero, header, footer and page title. The Japanese 「中田 慎吾」 appears once as the
 hero's secondary line; self-introduction prose keeps 「中田慎吾です」. See PF-003.
+
+## Works presentation (operator ruling 2026-11-22)
+
+All works are shown at the same size; no work is featured (PF-004 removed the
+`featured` flag from Agent Agency). Which work, if any, is the showcase is the
+owner's decision, not a design default. The `featured` mechanism stays in code.
