@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import MagneticLink from "@/app/components/MagneticLink";
 import { usePointerMotion } from "@/app/components/motion";
 import type { WorkItem } from "@/app/types";
@@ -8,17 +8,6 @@ import type { WorkItem } from "@/app/types";
 interface WorkCardProps {
   item: WorkItem;
 }
-
-// ハッシュ移動は全カードで一度だけ購読し、同じハッシュの再選択だけクリックで補う
-const highlights = new Map<string, () => void>();
-const highlightHash = () => {
-  highlights.get(window.location.hash)?.();
-};
-const highlightSameHash = (event: MouseEvent) => {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-  const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
-  if (link && link.origin === window.location.origin && link.pathname === window.location.pathname && link.search === window.location.search && link.hash === window.location.hash) highlightHash();
-};
 
 // 傾きと光は同じフレームで更新し、カード外へ出たら元の面へ戻す
 const attachTilt = (card: HTMLElement) => {
@@ -74,44 +63,14 @@ const attachTilt = (card: HTMLElement) => {
 };
 
 const WorkCard = ({ item }: WorkCardProps) => {
-  const ref = useRef<HTMLElement>(null);
   const surfaceRef = useRef<HTMLDivElement>(null);
-  const [highlight, setHighlight] = useState(0);
   usePointerMotion(surfaceRef, attachTilt);
 
-  useEffect(() => {
-    const card = ref.current;
-    if (card) card.dataset.hashReady = "true";
-    let timer: ReturnType<typeof setTimeout>;
-    const show = () => {
-      clearTimeout(timer);
-      setHighlight((value) => value + 1);
-      timer = setTimeout(() => setHighlight(0), 1200);
-    };
-    const hash = `#work-${item.id}`;
-    if (!highlights.size) {
-      window.addEventListener("hashchange", highlightHash);
-      document.addEventListener("click", highlightSameHash);
-    }
-    highlights.set(hash, show);
-    if (window.location.hash === hash) show();
-    return () => {
-      clearTimeout(timer);
-      if (card) delete card.dataset.hashReady;
-      highlights.delete(hash);
-      if (!highlights.size) {
-        window.removeEventListener("hashchange", highlightHash);
-        document.removeEventListener("click", highlightSameHash);
-      }
-    };
-  }, [item.id]);
-
   return (
-    <article ref={ref} id={`work-${item.id}`} tabIndex={-1} data-reveal className="work-card relative h-full min-w-0">
+    <article data-reveal className="work-card relative h-full min-w-0">
       {/* 表示と傾きの面を分け、スクロールの時差とホバーの復帰時間を独立させる */}
       <div ref={surfaceRef} className={`work-card-surface relative flex h-full min-w-0 flex-col gap-5 ${item.featured ? "border border-line bg-surface p-6 sm:p-10" : "border-t border-line px-2 pt-6 pb-2"}`}>
         <span aria-hidden className="work-edge pointer-events-none absolute inset-x-0 top-0 h-12 overflow-hidden" />
-        <span key={highlight} aria-hidden className={`work-highlight pointer-events-none absolute -inset-px ${highlight ? "work-highlight-active" : ""}`} />
         <h3 className={`m-0 leading-[1.5] font-bold ${item.featured ? "text-2xl" : "text-xl"}`}>{item.title}</h3>
         {/* 注目作品は本文と技術を横に並べ、説明を読む流れを優先する */}
         <div className={`grid flex-1 gap-5 ${item.featured ? "md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] md:gap-10" : ""}`}>
