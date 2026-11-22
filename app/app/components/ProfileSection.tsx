@@ -1,5 +1,4 @@
 import type { Profile } from "@/app/types";
-import Reveal from "@/app/components/Reveal";
 import SocialIcon from "@/app/components/SocialIcon";
 
 interface ProfileSectionProps {
@@ -8,26 +7,21 @@ interface ProfileSectionProps {
 
 const ProfileSection = ({ profile }: ProfileSectionProps) => (
   <section id="profile" className="relative overflow-hidden">
-    {/* 背景: うっすらしたグリッドとアクセント色のにじみ */}
-    <div aria-hidden className="hero-grid pointer-events-none absolute inset-0" />
+    {/* 左上の柔らかな光だけで奥行きを作り、文字の読みやすさを保つ */}
     <div
       aria-hidden
-      className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]"
+      className="pointer-events-none absolute -top-40 -left-40 h-[520px] w-[640px] rounded-full bg-accent/15 blur-[120px]"
     />
 
     <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
-      <Reveal className="flex max-w-[600px] flex-col gap-6">
-        <p className="m-0 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-gray-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          {profile.title}
-        </p>
-        <h1 className="m-0 text-[clamp(2.75rem,8vw,4.75rem)] leading-[1.05] font-extrabold tracking-[-0.04em]">
-          {profile.name}
-          <span className="mt-3 block bg-gradient-to-r from-accent to-emerald-200 bg-clip-text text-[clamp(1.125rem,2.4vw,1.5rem)] font-semibold tracking-[-0.01em] text-transparent">
-            Shingo Nakata
-          </span>
-        </h1>
-        <p className="m-0 text-base leading-[1.9] text-gray-300">{profile.description}</p>
+      <p className="hero-details m-0 mb-6 text-[0.9375rem] text-muted">{profile.title}</p>
+      <h1 className="hero-name m-0 text-[clamp(3rem,9vw,5.5rem)] leading-[1.05] font-black tracking-[-0.02em]">
+        {profile.name}
+      </h1>
+      <div aria-hidden className="hero-rule my-7 h-1 w-16 bg-accent" />
+      <div className="hero-details flex w-full min-w-0 flex-col items-start gap-6">
+        <p className="m-0 text-[1.125rem] text-muted">Shingo Nakata</p>
+        <p className="m-0 max-w-[36em] text-base leading-[1.9]">{profile.description}</p>
         <nav className="mt-2 flex flex-wrap gap-3">
           {profile.socialLinks.map((social) => (
             <a
@@ -35,24 +29,15 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/60 hover:text-accent"
+              className="flex items-center gap-2 rounded-full border border-line bg-surface-alt px-4 py-2 text-[0.9375rem] font-medium text-foreground transition-colors hover:border-accent hover:text-accent-text"
             >
               <SocialIcon icon={social.icon} className="h-4 w-4" />
               {social.name}
             </a>
           ))}
         </nav>
-      </Reveal>
+      </div>
     </div>
-
-    <a
-      href="#activities"
-      aria-label="次のセクションへ"
-      className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.6875rem] tracking-[0.2em] text-gray-500 uppercase transition-colors hover:text-accent md:flex"
-    >
-      Scroll
-      <span className="h-8 w-px animate-pulse bg-current" />
-    </a>
   </section>
 );
 

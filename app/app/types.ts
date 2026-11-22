@@ -41,4 +41,5 @@ export interface WorkItem {
   tags: string[];
   link: string | null;
   linkLabel?: string;
+  featured?: boolean;
 }
