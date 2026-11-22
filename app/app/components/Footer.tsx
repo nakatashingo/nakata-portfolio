@@ -8,7 +8,7 @@ interface FooterProps {
 const Footer = ({ socialLinks }: FooterProps) => (
   <footer className="border-t border-line">
     <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-4 px-6 py-8 sm:px-8">
-      <span className="text-[0.8125rem] text-muted">© 2026 Shingo Nakata</span>
+      <span className="text-[0.8125rem] text-muted">© 2026 Nakata Shingo</span>
       <nav className="flex gap-5">
         {socialLinks.map((social) => (
           <a
