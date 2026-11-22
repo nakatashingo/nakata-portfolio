@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "operation": "release",
+  "scope": "execution-unit:PF-002",
+  "actor": "implementation",
+  "team": "portfolio",
+  "recorded_at": "2026-11-22T08:58:31.124804+00:00",
+  "reason": "PF-002 merged and closed out",
+  "displaced_holder": "implementation",
+  "displaced_team": "portfolio",
+  "displaced_claimed_at": "2026-11-22T08:52:38.280362+00:00",
+  "base_commit": "26d7ce316588b96f5280ad40e983c2b4578b4a7b"
+}
