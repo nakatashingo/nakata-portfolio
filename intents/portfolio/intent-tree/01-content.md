@@ -48,4 +48,4 @@ Gemini/ADK, …) were offered and not approved; do not add them unasked.
 The owner wants more motion: scroll-linked reveals (A) plus pointer-reactive
 touches (B), no fireworks motif. Motion must stay subordinate to reading, be
 off under prefers-reduced-motion, and never hide content when JS is absent.
-Skills connect to Works (a skill shows which works used it). See PF-007.
+See PF-007. The skill → 「使った作品」 popover (B4) was removed at the owner's request (PF-008); Skills are plain text again.

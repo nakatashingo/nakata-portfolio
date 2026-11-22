@@ -1,0 +1,38 @@
+implementation_issue_packet:
+  issue_title: "PF-008 Remove the skill-to-works popover"
+  issue_kind: feature
+  source_execution_unit: PF-008
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/components/SkillsSection.tsx app/app/components/SkillRows.tsx app/app/components/WorkCard.tsx app/app/globals.css
+  target_part: "Remove PF-007 B4 (skill popover and work-card hash highlight)"
+  dependencies: []
+  technical_baseline:
+    - "PF-007 merged on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "Skill items render as plain text list items again: no buttons, no aria-expanded/aria-controls, no 「使った作品」 popover in markup or behaviour."
+    - "SkillsSection no longer imports worksItems; SkillRows (or its replacement) takes only the skill categories."
+    - "The #work-<id> highlight machinery is removed: no highlights Map, no hashchange/click listeners, no highlight state, no work-highlight element, and WorkCard no longer sets id=\"work-<id>\" or tabIndex={-1}."
+    - "Dead CSS for B4 is removed (.skill-row:has([aria-expanded]), .skill-popover, .work-highlight*, @keyframes work-target-out); no other CSS changes."
+    - "A1-A4 and B1-B3 behave exactly as before, including the Skills row reveal (data-reveal) and work-card tilt/edge light."
+    - "No data, copy, colour or dependency changes."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Motion section updated in 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Updated before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
