@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T12:35:15.893781+00:00",
+  "updated_at": "2026-11-22T13:05:29.603174+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -114,6 +114,28 @@
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/9"
       },
       "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/10",
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    },
+    {
+      "execution_unit": "PF-006",
+      "title": "PF-006 Add Go, Python, C# and Docker to Skills",
+      "state": "queued",
+      "dependencies": [],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-006/implementation.md",
+        "review_context": ".intent-cli/issues/PF-006/review-context.md",
+        "yaml": ".intent-cli/issues/PF-006/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 11,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/11"
+      },
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
