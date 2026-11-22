@@ -1,0 +1,51 @@
+implementation_issue_packet:
+  issue_title: "PF-001 Remove hero avatar and add Agent Agency to Works"
+  issue_kind: feature
+  source_execution_unit: PF-001
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/components/ProfileSection.tsx app/app/components/WorkCard.tsx app/app/data/profile.ts app/app/data/works.ts app/app/types.ts
+  target_part: "Hero section without avatar; Works list gains Agent Agency with a per-item link label"
+  dependencies: []
+  technical_baseline:
+    - "Next.js 15 App Router, React 19, Tailwind CSS v4, Framer Motion (app/package.json)"
+    - "Baseline UI redesign commit 0f3b73b on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "The hero (#profile) renders no avatar circle, initial, or photo note at any viewport width; the remaining text column stays left-aligned within the 1080px container."
+    - "Profile type and profile data no longer contain avatarInitial or avatarNote, and nothing references them."
+    - "WorkItem gains an optional linkLabel; WorkCard shows linkLabel when set and falls back to 'GitHubで見る' otherwise."
+    - "works.ts contains an Agent Agency entry listed first, linking to https://zenn.dev/hackathons/google-cloud-japan-ai-hackathon-vol5/projects/2db8995cde6d77 with linkLabel 'Zennで見る'."
+    - "Existing three works entries are unchanged in content."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Both changes are content-presentation decisions recorded in 01-content."
+knowledge_updates:
+  intent_tree:
+    required: false
+    target_paths: []
+    summary: "01-content.md already records the ruling in the host before implementation."
+  adr:
+    required: false
+    target_paths: []
+    decision_title: ""
+  diagram:
+    required: false
+    target_paths: []
+    diagram_type: none
+  docs:
+    required: false
+    target_paths: []
+    summary: ""
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
