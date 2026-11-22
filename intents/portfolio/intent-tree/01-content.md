@@ -49,3 +49,11 @@ The owner wants more motion: scroll-linked reveals (A) plus pointer-reactive
 touches (B), no fireworks motif. Motion must stay subordinate to reading, be
 off under prefers-reduced-motion, and never hide content when JS is absent.
 See PF-007. The skill → 「使った作品」 popover (B4) was removed at the owner's request (PF-008); Skills are plain text again.
+
+## More motion, round 2 (operator ruling 2026-11-23)
+
+The owner asked for still more motion and chose four items: an ambient hero
+glow that drifts on its own, the hero name revealed character by character,
+a scroll-progress line under the header, and Skills names revealed one by one.
+Banner marquees and a custom cursor were offered and not chosen. See PF-010.
+(PF-009 is reserved for the yomiyasu copy edit awaiting owner approval.)

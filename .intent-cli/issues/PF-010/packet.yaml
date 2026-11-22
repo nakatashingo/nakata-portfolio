@@ -1,0 +1,38 @@
+implementation_issue_packet:
+  issue_title: "PF-010 Add ambient hero glow, per-character name, scroll progress and per-skill reveal"
+  issue_kind: feature
+  source_execution_unit: PF-010
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/components app/app/globals.css
+  target_part: "Motion round 2: hero ambient glow, name character reveal, header scroll progress, per-skill reveal"
+  dependencies: []
+  technical_baseline:
+    - "PF-008 merged on main (PF-007 motion minus the skill popover)"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "M1: the hero has two glows that drift on their own via CSS keyframe loops (≈18s and ≈24s), composing with the existing pointer follow; static under reduced motion; no horizontal scroll at 360px."
+    - "M2: the hero h1 has aria-label equal to the name and renders one aria-hidden span per character that reveals with a 0.035s stagger via CSS only; .hero-rule and .hero-details delays are 0.5s and 0.7s; no animation under reduced motion; text visible without JavaScript."
+    - "M3: a 2px accent progress line at the bottom of the sticky header scales with scroll position (rAF-throttled passive listener); aria-hidden."
+    - "M4: Skills names reveal individually with a 0.04s stagger within each row when the row first enters the viewport; visible in SSR HTML, without JavaScript and under reduced motion."
+    - "All PF-007 behaviour (active nav, timeline progress, Works reveal, heading rules, card tilt/edge light, magnetic links, glow pointer-follow) still works."
+    - "No new dependencies; only transform/opacity are animated; no data, copy or colour changes; keyboard focus outlines still visible."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Motion round 2 ruling recorded under 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Written before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
