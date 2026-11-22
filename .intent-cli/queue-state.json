@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T14:45:06.025282+00:00",
+  "updated_at": "2026-11-22T15:37:34.20939+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -160,6 +160,28 @@
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/13"
       },
       "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/14",
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    },
+    {
+      "execution_unit": "PF-008",
+      "title": "PF-008 Remove the skill-to-works popover",
+      "state": "queued",
+      "dependencies": [],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-008/implementation.md",
+        "review_context": ".intent-cli/issues/PF-008/review-context.md",
+        "yaml": ".intent-cli/issues/PF-008/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 15,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/15"
+      },
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
