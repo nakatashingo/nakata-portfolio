@@ -58,7 +58,8 @@
     overflow-wrap: break-word;
   }
 
-  a:focus-visible {
+  a:focus-visible,
+  button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 4px;
   }
@@ -76,16 +77,16 @@
  */
 @layer components {
   @media (prefers-reduced-motion: no-preference) {
-    .hero-name {
+    [data-hero-ready] .hero-name {
       animation: hero-name-in 0.6s ease-out both;
     }
 
-    .hero-rule {
+    [data-hero-ready] .hero-rule {
       transform-origin: left;
       animation: hero-rule-in 0.5s ease-out 0.35s both;
     }
 
-    .hero-details {
+    [data-hero-ready] .hero-details {
       animation: hero-details-in 0.6s ease-out 0.6s both;
     }
   }
@@ -117,5 +118,169 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+/* 装飾は領域を予約済みの絶対配置にし、動きによるレイアウトのずれを防ぐ */
+@layer components {
+  .nav-indicator {
+    opacity: 0;
+    transform: translate(var(--nav-x, 0px), var(--nav-y, 0px)) scaleX(var(--nav-width, 1));
+  }
+
+  .active-nav[data-measured] .nav-indicator {
+    opacity: 1;
+  }
+
+  .active-nav:not([data-measured]) a[aria-current]::after {
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    content: "";
+  }
+
+  .timeline[data-progress]::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 1px;
+    height: var(--timeline-height);
+    background: var(--accent);
+    transform: scaleY(var(--timeline-progress));
+    transform-origin: top;
+    pointer-events: none;
+    content: "";
+  }
+
+  .timeline-dot {
+    z-index: 2;
+  }
+
+  .timeline-dot::after {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgb(18 168 156 / 0.25);
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+  }
+
+  .skill-row:has([aria-expanded="true"]) {
+    z-index: 3;
+  }
+
+  .skill-popover {
+    transform: translateX(var(--popover-shift, 0px));
+  }
+
+  .work-card {
+    scroll-margin-top: 24px;
+  }
+
+  .work-edge {
+    opacity: 0;
+  }
+
+  .work-edge::before {
+    position: absolute;
+    top: -240px;
+    left: -240px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle at center, var(--accent), transparent 70%);
+    transform: translateX(var(--edge-x, 0px));
+    content: "";
+  }
+
+  .work-highlight {
+    outline: 1px solid var(--accent);
+    box-shadow: 0 0 24px rgb(18 168 156 / 0.18);
+    opacity: 0;
+  }
+
+  .work-highlight-active,
+  .work-card:target:not([data-hash-ready]) .work-highlight {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-indicator {
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-dot::after {
+      transition: opacity 0.3s ease;
+    }
+
+    .timeline-dot[data-lit="true"]::after {
+      opacity: 1;
+    }
+
+    [data-reveal][data-reveal-state] {
+      transition: opacity 0.5s ease-out var(--reveal-delay, 0s), transform 0.5s ease-out var(--reveal-delay, 0s);
+    }
+
+    [data-reveal][data-reveal-state="pending"]:not(:target):not(:focus-within) {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    [data-reveal][data-reveal-state="visible"],
+    [data-reveal]:target {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* キーボードで先に辿った内容は表示待ちにしない */
+    [data-reveal]:focus-within {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .heading-rule[data-reveal-state] {
+      transition: transform 0.5s ease-out;
+    }
+
+    .heading-rule[data-reveal-state="pending"] {
+      transform: scaleX(0);
+    }
+
+    .work-highlight-active {
+      animation: work-target-out 1.2s ease-out both;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .magnetic-link {
+      transition: transform 0.3s cubic-bezier(0.22, 1.5, 0.36, 1);
+    }
+
+    .work-card-surface {
+      transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+      transition: transform 0.4s ease-out;
+    }
+
+    .work-edge {
+      transition: opacity 0.4s ease;
+    }
+
+    .work-card-surface[data-tilt] .work-edge {
+      opacity: 0.18;
+    }
+  }
+}
+
+@keyframes work-target-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
