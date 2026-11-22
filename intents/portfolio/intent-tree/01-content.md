@@ -28,3 +28,9 @@ hero's secondary line; self-introduction prose keeps 「中田慎吾です」. S
 All works are shown at the same size; no work is featured (PF-004 removed the
 `featured` flag from Agent Agency). Which work, if any, is the showcase is the
 owner's decision, not a design default. The `featured` mechanism stays in code.
+
+## AR花火 (operator ruling 2026-11-22)
+
+Works includes AR花火 (NUTFes/ar-hanabi-mobile, public). The owner is the
+second-largest committer; the description names only parts evidenced by the
+owner's own commits. Placed second (after Agent Agency), newest-first. See PF-005.
