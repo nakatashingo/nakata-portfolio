@@ -10,11 +10,11 @@ const zenKaku = Zen_Kaku_Gothic_New({
 });
 
 export const metadata: Metadata = {
-  title: "中田慎吾 | Portfolio",
-  description: "Web Developer 中田慎吾のポートフォリオサイトです。",
+  title: "Nakata Shingo | Portfolio",
+  description: "Web Developer 中田慎吾（Nakata Shingo）のポートフォリオサイトです。",
   openGraph: {
-    title: "中田慎吾 | Portfolio",
-    description: "Web Developer 中田慎吾のポートフォリオサイトです。",
+    title: "Nakata Shingo | Portfolio",
+    description: "Web Developer 中田慎吾（Nakata Shingo）のポートフォリオサイトです。",
     type: "website",
     locale: "ja_JP",
   },

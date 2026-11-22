@@ -20,7 +20,7 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
       </h1>
       <div aria-hidden className="hero-rule my-7 h-1 w-16 bg-accent" />
       <div className="hero-details flex w-full min-w-0 flex-col items-start gap-6">
-        <p className="m-0 text-[1.125rem] text-muted">Shingo Nakata</p>
+        <p className="m-0 text-[1.125rem] text-muted">中田 慎吾</p>
         <p className="m-0 max-w-[36em] text-base leading-[1.9]">{profile.description}</p>
         <nav className="mt-2 flex flex-wrap gap-3">
           {profile.socialLinks.map((social) => (
