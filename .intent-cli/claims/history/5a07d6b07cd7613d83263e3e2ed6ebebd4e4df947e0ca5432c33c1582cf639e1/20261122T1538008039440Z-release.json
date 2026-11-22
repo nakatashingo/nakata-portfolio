@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "operation": "release",
+  "scope": "execution-unit:PF-008",
+  "actor": "design",
+  "team": "portfolio",
+  "recorded_at": "2026-11-22T15:38:00.803944+00:00",
+  "reason": "hand off after publish",
+  "displaced_holder": "design",
+  "displaced_team": "portfolio",
+  "displaced_claimed_at": "2026-11-22T15:37:10.727169+00:00",
+  "base_commit": "ac34c084e96c8f9c1a3606195dab44eca1cecb1a"
+}
