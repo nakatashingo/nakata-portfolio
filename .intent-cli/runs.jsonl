@@ -24,3 +24,5 @@
 {"ts":"2026-11-22T13:08:17.121851+00:00","execution_unit":"PF-006","event":"closeout-recorded","by":"intent-cli closeout pr","repo":"nakatashingo/nakata-portfolio","pr":12}
 {"ts":"2026-11-22T14:24:05.27078+00:00","execution_unit":"PF-007","event":"queue_seeded_from_packet","by":"automation queue-seed-from-packet (G363)","packet_ref":".intent-cli/issues/PF-007/"}
 {"ts":"2026-11-22T14:24:10.878323+00:00","execution_unit":"PF-007","event":"issue-created","by":"issue-publish-flow","linked_issue":"nakatashingo/nakata-portfolio#13","reason":"https://github.com/nakatashingo/nakata-portfolio/issues/13"}
+{"ts":"2026-11-22T14:45:06.019568+00:00","execution_unit":"PF-007","event":"pr-merged","by":"intent-cli closeout pr","repo":"nakatashingo/nakata-portfolio","pr":14}
+{"ts":"2026-11-22T14:45:06.019568+00:00","execution_unit":"PF-007","event":"closeout-recorded","by":"intent-cli closeout pr","repo":"nakatashingo/nakata-portfolio","pr":14}

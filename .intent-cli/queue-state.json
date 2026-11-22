@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T14:24:10.878323+00:00",
+  "updated_at": "2026-11-22T14:45:06.025282+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -145,7 +145,7 @@
     {
       "execution_unit": "PF-007",
       "title": "PF-007 Add scroll-linked and pointer-reactive motion",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -159,6 +159,7 @@
         "number": 13,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/13"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/14",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
