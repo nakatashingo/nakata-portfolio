@@ -1,0 +1,37 @@
+implementation_issue_packet:
+  issue_title: "PF-003 Show the display name as Nakata Shingo"
+  issue_kind: feature
+  source_execution_unit: PF-003
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/data/profile.ts app/app/components/ProfileSection.tsx app/app/components/Header.tsx app/app/components/Footer.tsx app/app/layout.tsx
+  target_part: "Display name in hero, header, footer and page metadata"
+  dependencies: []
+  technical_baseline:
+    - "PF-002 merged on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "profile.ts name is \"Nakata Shingo\"; the hero <h1> therefore shows Nakata Shingo."
+    - "The hero secondary line under the name reads 中田 慎吾 instead of Shingo Nakata."
+    - "Header brand link text is Nakata Shingo; footer reads © 2026 Nakata Shingo."
+    - "layout.tsx metadata title and openGraph.title are \"Nakata Shingo | Portfolio\"; both descriptions are \"Web Developer 中田慎吾（Nakata Shingo）のポートフォリオサイトです。\""
+    - "The self-introduction text in profile.ts is unchanged, and `grep -rn \"Shingo Nakata\" app/app` returns nothing."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Display-name ruling recorded under 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Written before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
