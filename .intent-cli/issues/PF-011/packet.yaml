@@ -1,0 +1,36 @@
+implementation_issue_packet:
+  issue_title: "PF-011 Keep the sticky header and its progress line visible while scrolling"
+  issue_kind: bug
+  source_execution_unit: PF-011
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/globals.css app/app/components/Header.tsx
+  target_part: "Sticky header range (body height) and progress-line recompute on height change"
+  dependencies: []
+  technical_baseline:
+    - "PF-010 merged on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "html, body keep width:100%; only html keeps height:100%; body uses min-height:100% (no height:100%)."
+    - "With the page scrolled to Activities, Skills, Works and the bottom, the sticky header stays at the top of the viewport and its progress line is visible with scaleX matching scroll progress (≈1 at the bottom)."
+    - "The progress line also updates when the document height changes (ResizeObserver on document.body, rAF-throttled, disconnected on cleanup)."
+    - "No other layout changes: hero still fills the first viewport, no horizontal scroll at 360px, all PF-007/PF-010 motion still works."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Bug report recorded under 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Written before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []

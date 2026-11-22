@@ -57,3 +57,10 @@ glow that drifts on its own, the hero name revealed character by character,
 a scroll-progress line under the header, and Skills names revealed one by one.
 Banner marquees and a custom cursor were offered and not chosen. See PF-010.
 (PF-009 is reserved for the yomiyasu copy edit awaiting owner approval.)
+
+## Sticky header bug (operator report 2026-11-23)
+
+The owner reported the scroll-progress line vanishing from Activities onward.
+Root cause: `html, body { height: 100% }` limits the sticky header's range to
+one viewport, so the whole header (and its progress line and nav indicator)
+scrolls away. The header must stay visible for the whole page. See PF-011.
