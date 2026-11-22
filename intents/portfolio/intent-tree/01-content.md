@@ -42,3 +42,10 @@ Skills lists only what the owner approved. Added in PF-006: Go, Python, C#
 NUTFES-MAP / FinanSu / AR花火 API; research repos; Unity projects; Docker
 Compose setups). Other candidates (Hono, Cloudflare Workers, PyTorch, Unity,
 Gemini/ADK, …) were offered and not approved; do not add them unasked.
+
+## Motion (operator ruling 2026-11-22)
+
+The owner wants more motion: scroll-linked reveals (A) plus pointer-reactive
+touches (B), no fireworks motif. Motion must stay subordinate to reading, be
+off under prefers-reduced-motion, and never hide content when JS is absent.
+Skills connect to Works (a skill shows which works used it). See PF-007.

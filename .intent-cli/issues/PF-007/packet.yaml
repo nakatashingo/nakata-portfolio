@@ -1,0 +1,43 @@
+implementation_issue_packet:
+  issue_title: "PF-007 Add scroll-linked and pointer-reactive motion"
+  issue_kind: feature
+  source_execution_unit: PF-007
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/components app/app/globals.css
+  target_part: "Motion: active nav, timeline progress, reveals, heading rules, card tilt, magnetic links, hero glow, skill-to-works popover"
+  dependencies: []
+  technical_baseline:
+    - "PF-006 merged on main"
+    - "Next.js 15 App Router, React 19, Tailwind CSS v4; framer-motion already installed"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "A1: the current section's nav link has aria-current=\"true\" and a sliding accent underline; updates while scrolling."
+    - "A2: an accent progress line over the Activities timeline grows with scroll and dots light as it passes; full static timeline under reduced motion or without JS."
+    - "A3: Skills rows and Works cards reveal once on entering the viewport with a 0.08s stagger; content is visible in server-rendered HTML."
+    - "A4: each section heading shows a 48px accent rule that draws in once on entering the viewport; static under reduced motion."
+    - "B1: work cards tilt (max 4deg) and show a pointer-following accent edge glow on fine pointers only, resetting on leave."
+    - "B2: hero social pills and Works links move up to 6px toward the pointer on fine pointers only, via one reusable component/hook."
+    - "B3: the hero glow eases toward the pointer inside the hero on fine pointers only; static on touch and under reduced motion; no device-orientation API."
+    - "B4: skills that exactly match a work tag are buttons opening an accessible 「使った作品」 popover with links to #work-<id>; cards have id work-<id> and highlight for 1.2s when targeted; non-matching skills stay plain text; no data files change."
+    - "Under prefers-reduced-motion: reduce, A1-A4 and B1-B3 render static final states; B4 works without animation."
+    - "No new dependencies; only transform/opacity are animated; no horizontal scroll at 360px; keyboard focus outlines still visible."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Motion ruling recorded under 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Written before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
