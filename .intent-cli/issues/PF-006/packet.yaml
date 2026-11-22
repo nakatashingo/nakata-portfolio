@@ -1,0 +1,35 @@
+implementation_issue_packet:
+  issue_title: "PF-006 Add Go, Python, C# and Docker to Skills"
+  issue_kind: feature
+  source_execution_unit: PF-006
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/data/skills.ts
+  target_part: "Skills: 言語 and ツール items"
+  dependencies: []
+  technical_baseline:
+    - "PF-005 merged on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "skills.ts 言語 items are exactly [\"HTML\", \"CSS\", \"JavaScript\", \"TypeScript\", \"Go\", \"Python\", \"C#\"]."
+    - "skills.ts ツール items are exactly [\"Git\", \"GitHub\", \"Docker\"]."
+    - "The フレームワーク / ライブラリ category, category order and labels are unchanged; no other file changes."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Skills ruling recorded under 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Written before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []

@@ -34,3 +34,11 @@ owner's decision, not a design default. The `featured` mechanism stays in code.
 Works includes AR花火 (NUTFes/ar-hanabi-mobile, public). The owner is the
 second-largest committer; the description names only parts evidenced by the
 owner's own commits. Placed second (after Agent Agency), newest-first. See PF-005.
+
+## Skills (operator ruling 2026-11-22)
+
+Skills lists only what the owner approved. Added in PF-006: Go, Python, C#
+(言語) and Docker (ツール), each backed by the owner's commits (Enomo /
+NUTFES-MAP / FinanSu / AR花火 API; research repos; Unity projects; Docker
+Compose setups). Other candidates (Hono, Cloudflare Workers, PyTorch, Unity,
+Gemini/ADK, …) were offered and not approved; do not add them unasked.
