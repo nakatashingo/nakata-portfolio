@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T17:00:01.154528+00:00",
+  "updated_at": "2026-11-22T17:03:44.602072+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -237,7 +237,7 @@
     {
       "execution_unit": "PF-009",
       "title": "PF-009 Apply yomiyasu copy edits to three descriptions",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -251,6 +251,7 @@
         "number": 21,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/21"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/22",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
