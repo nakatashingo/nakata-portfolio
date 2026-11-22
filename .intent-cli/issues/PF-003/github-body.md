@@ -57,7 +57,8 @@ In `app/`: `npx tsc --noEmit` and `npm run build`. At repo root: `git diff --che
 
 ## Related Links
 
-- None
+- Intent node: `intents/portfolio/intent-tree/01-content.md` (Display name section)
+- Previous design unit: #3 (PF-002)
 
 ## Knowledge Maintenance
 
