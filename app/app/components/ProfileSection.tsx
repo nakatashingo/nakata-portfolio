@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import HeroGlow from "@/app/components/HeroGlow";
 import MagneticLink from "@/app/components/MagneticLink";
 import type { Profile } from "@/app/types";
@@ -9,13 +10,30 @@ interface ProfileSectionProps {
 
 const ProfileSection = ({ profile }: ProfileSectionProps) => (
   <section id="profile" className="relative overflow-hidden">
-    {/* 左上の柔らかな光だけで奥行きを作り、文字の読みやすさを保つ */}
+    {/* 大小の柔らかな光で奥行きを作り、文字の読みやすさを保つ */}
     <HeroGlow />
 
     <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
       <p className="hero-details m-0 mb-6 text-[0.9375rem] text-muted">{profile.title}</p>
-      <h1 className="hero-name m-0 text-[clamp(3rem,9vw,5.5rem)] leading-[1.05] font-black tracking-[-0.02em]">
-        {profile.name}
+      <h1 aria-label={profile.name} className="m-0 text-[clamp(3rem,9vw,5.5rem)] leading-[1.05] font-black tracking-[-0.02em]">
+        {/* 単語内をひとまとまりにし、通常の空白での折り返しを保つ */}
+        {profile.name.split(/(\s)/u).map((part, partIndex, parts) => {
+          const offset = Array.from(parts.slice(0, partIndex).join("")).length;
+          return (
+            <span key={partIndex} className={/\s/u.test(part) ? undefined : "inline-block whitespace-nowrap"}>
+              {Array.from(part).map((character, index) => (
+                <span
+                  key={index}
+                  aria-hidden="true"
+                  className={`hero-name-character${/\s/u.test(character) ? "" : " inline-block"}`}
+                  style={{ "--i": offset + index } as CSSProperties}
+                >
+                  {character}
+                </span>
+              ))}
+            </span>
+          );
+        })}
       </h1>
       <div aria-hidden className="hero-rule my-7 h-1 w-16 bg-accent" />
       <div className="hero-details flex w-full min-w-0 flex-col items-start gap-6">

@@ -12,6 +12,32 @@ const NAV_LINKS = [
 const Header = () => {
   const [current, setCurrent] = useState("#profile");
   const navRef = useRef<HTMLElement>(null);
+  const progressRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const progress = progressRef.current;
+    if (!progress) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      const value = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 0;
+      progress.style.transform = `scaleX(${value})`;
+    };
+    // スクロールとリサイズの通知を一描画にまとめ、軽減設定でも現在位置を直接示す
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      progress.style.removeProperty("transform");
+    };
+  }, []);
 
   useEffect(() => {
     if (!("IntersectionObserver" in window)) return;
@@ -114,6 +140,7 @@ const Header = () => {
           <span aria-hidden className="nav-indicator pointer-events-none absolute top-0 left-0 h-0.5 w-px origin-left bg-accent" />
         </nav>
       </div>
+      <span ref={progressRef} aria-hidden className="scroll-progress pointer-events-none absolute inset-x-0 bottom-0 h-0.5 origin-left bg-accent" />
     </header>
   );
 };
