@@ -64,3 +64,10 @@ The owner reported the scroll-progress line vanishing from Activities onward.
 Root cause: `html, body { height: 100% }` limits the sticky header's range to
 one viewport, so the whole header (and its progress line and nav indicator)
 scrolls away. The header must stay visible for the whole page. See PF-011.
+
+## Copy polish with yomiyasu (owner approved 2026-11-23)
+
+Three descriptions were polished with yomiyasu v3.2.3 (meaning kept, lint/diff/verify
+run) and approved by the owner. The portfolio-site work description still contains
+facts that no longer match the site (shuffle animation, Framer Motion) and is left
+unchanged pending the owner's decision. See PF-009.
