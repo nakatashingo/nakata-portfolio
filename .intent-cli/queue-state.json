@@ -1,5 +1,28 @@
 {
   "schema_version": "1",
-  "updated_at": "1970-01-01T00:00:00+00:00",
-  "items": []
+  "updated_at": "2026-11-22T08:46:27.527421+00:00",
+  "items": [
+    {
+      "execution_unit": "PF-001",
+      "title": "PF-001 Remove hero avatar and add Agent Agency to Works",
+      "state": "queued",
+      "dependencies": [],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-001/implementation.md",
+        "review_context": ".intent-cli/issues/PF-001/review-context.md",
+        "yaml": ".intent-cli/issues/PF-001/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 1,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/1"
+      },
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    }
+  ]
 }
