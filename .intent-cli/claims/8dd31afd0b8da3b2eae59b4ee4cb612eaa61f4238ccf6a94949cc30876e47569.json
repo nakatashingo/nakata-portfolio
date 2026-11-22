@@ -1,8 +1,0 @@
-{
-  "schema_version": "1",
-  "scope": "execution-unit:PF-009",
-  "actor": "implementation",
-  "team": "portfolio",
-  "claimed_at": "2026-11-22T17:00:44.380287+00:00",
-  "base_commit": "e0b528684ee25063a4e97257ce9f7a1bfd472560"
-}
