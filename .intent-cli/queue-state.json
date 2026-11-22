@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T12:05:14.763463+00:00",
+  "updated_at": "2026-11-22T12:08:14.71457+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -76,7 +76,7 @@
     {
       "execution_unit": "PF-004",
       "title": "PF-004 Show all works at the same size",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -90,6 +90,7 @@
         "number": 7,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/7"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/8",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
