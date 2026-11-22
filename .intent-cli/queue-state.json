@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T08:51:38.925673+00:00",
+  "updated_at": "2026-11-22T08:58:19.775539+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -28,7 +28,7 @@
     {
       "execution_unit": "PF-002",
       "title": "PF-002 Polish visual design while keeping the dark teal mood",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [
         "PF-001"
       ],
@@ -44,6 +44,7 @@
         "number": 3,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/3"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/4",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
