@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T12:31:51.941803+00:00",
+  "updated_at": "2026-11-22T12:35:15.893781+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -99,7 +99,7 @@
     {
       "execution_unit": "PF-005",
       "title": "PF-005 Add AR Hanabi (mobile) to Works",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -113,6 +113,7 @@
         "number": 9,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/9"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/10",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
