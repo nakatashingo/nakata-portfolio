@@ -1,2 +1,4 @@
 {"ts":"2026-11-22T08:46:19.130991+00:00","execution_unit":"PF-001","event":"queue_seeded_from_packet","by":"automation queue-seed-from-packet (G363)","packet_ref":".intent-cli/issues/PF-001/"}
 {"ts":"2026-11-22T08:46:27.527421+00:00","execution_unit":"PF-001","event":"issue-created","by":"issue-publish-flow","linked_issue":"nakatashingo/nakata-portfolio#1","reason":"https://github.com/nakatashingo/nakata-portfolio/issues/1"}
+{"ts":"2026-11-22T08:50:58.62055+00:00","execution_unit":"PF-002","event":"queue_seeded_from_packet","by":"automation queue-seed-from-packet (G363)","packet_ref":".intent-cli/issues/PF-002/"}
+{"ts":"2026-11-22T08:51:04.555884+00:00","execution_unit":"PF-002","event":"issue-created","by":"issue-publish-flow","linked_issue":"nakatashingo/nakata-portfolio#3","reason":"https://github.com/nakatashingo/nakata-portfolio/issues/3"}

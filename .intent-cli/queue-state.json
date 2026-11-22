@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T08:50:28.37559+00:00",
+  "updated_at": "2026-11-22T08:51:04.555884+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -20,6 +20,30 @@
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/1"
       },
       "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/2",
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    },
+    {
+      "execution_unit": "PF-002",
+      "title": "PF-002 Polish visual design while keeping the dark teal mood",
+      "state": "queued",
+      "dependencies": [
+        "PF-001"
+      ],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-002/implementation.md",
+        "review_context": ".intent-cli/issues/PF-002/review-context.md",
+        "yaml": ".intent-cli/issues/PF-002/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 3,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/3"
+      },
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
