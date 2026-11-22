@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T16:51:57.335338+00:00",
+  "updated_at": "2026-11-22T16:55:28.306754+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -214,7 +214,7 @@
     {
       "execution_unit": "PF-011",
       "title": "PF-011 Keep the sticky header and its progress line visible while scrolling",
-      "state": "queued",
+      "state": "completed",
       "dependencies": [],
       "blocked_by": [],
       "clarification_return_path": "intents/portfolio/clarifications/open.md",
@@ -228,6 +228,7 @@
         "number": 19,
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/19"
       },
+      "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/20",
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
