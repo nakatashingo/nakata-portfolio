@@ -7,39 +7,61 @@ interface ProfileSectionProps {
 }
 
 const ProfileSection = ({ profile }: ProfileSectionProps) => (
-  <section id="profile" className="mx-auto flex max-w-[1080px] items-center justify-center px-8 pb-22 pt-24">
-    <Reveal className="w-full">
-      <div className="card-surface flex w-full flex-wrap items-center gap-14 p-8 sm:p-14">
-        <div className="flex basis-full flex-col gap-4 sm:min-w-70 sm:basis-0 sm:flex-[2]">
-          <h1 className="m-0 text-[clamp(2rem,5vw,3rem)] font-extrabold tracking-[-0.02em] text-white">
-            {profile.name}
-          </h1>
-          <h2 className="m-0 text-[1.0625rem] font-medium text-white/75">{profile.title}</h2>
-          <p className="m-0 text-base leading-[1.8] text-white/90">{profile.description}</p>
-          <nav className="mt-2 flex flex-wrap gap-5">
-            {profile.socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 text-[0.9375rem] font-medium text-white transition-opacity hover:opacity-80"
-              >
-                <SocialIcon icon={social.icon} className="h-4 w-4" />
-                {social.name}
-              </a>
-            ))}
-          </nav>
-        </div>
+  <section id="profile" className="relative overflow-hidden">
+    {/* 背景: うっすらしたグリッドとアクセント色のにじみ */}
+    <div aria-hidden className="hero-grid pointer-events-none absolute inset-0" />
+    <div
+      aria-hidden
+      className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]"
+    />
 
-        <div className="flex basis-full flex-col items-center gap-2.5 sm:min-w-45 sm:basis-0 sm:flex-1">
-          <div className="flex h-32 w-32 sm:h-50 sm:w-50 items-center justify-center rounded-full border border-dashed border-white/40 bg-white/12">
-            <span className="text-4xl sm:text-[3.25rem] font-extrabold text-white/50">{profile.avatarInitial}</span>
+    <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col-reverse items-center justify-center gap-12 px-6 py-20 sm:px-8 md:flex-row md:justify-between">
+      <Reveal className="flex max-w-[600px] flex-col gap-6">
+        <p className="m-0 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-gray-300">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          {profile.title}
+        </p>
+        <h1 className="m-0 text-[clamp(2.75rem,8vw,4.75rem)] leading-[1.05] font-extrabold tracking-[-0.04em]">
+          {profile.name}
+          <span className="mt-3 block bg-gradient-to-r from-accent to-emerald-200 bg-clip-text text-[clamp(1.125rem,2.4vw,1.5rem)] font-semibold tracking-[-0.01em] text-transparent">
+            Shingo Nakata
+          </span>
+        </h1>
+        <p className="m-0 text-base leading-[1.9] text-gray-300">{profile.description}</p>
+        <nav className="mt-2 flex flex-wrap gap-3">
+          {profile.socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent/60 hover:text-accent"
+            >
+              <SocialIcon icon={social.icon} className="h-4 w-4" />
+              {social.name}
+            </a>
+          ))}
+        </nav>
+      </Reveal>
+
+      <Reveal delay={0.15} className="flex flex-col items-center gap-3">
+        <div className="rounded-full bg-gradient-to-br from-accent to-card-gradient-start p-[3px] shadow-[0_0_80px_rgba(18,168,156,0.35)]">
+          <div className="flex h-40 w-40 items-center justify-center rounded-full bg-surface-alt sm:h-56 sm:w-56">
+            <span className="text-5xl font-extrabold text-white/70 sm:text-6xl">{profile.avatarInitial}</span>
           </div>
-          <span className="text-xs text-white/60">{profile.avatarNote}</span>
         </div>
-      </div>
-    </Reveal>
+        <span className="text-xs text-gray-500">{profile.avatarNote}</span>
+      </Reveal>
+    </div>
+
+    <a
+      href="#activities"
+      aria-label="次のセクションへ"
+      className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.6875rem] tracking-[0.2em] text-gray-500 uppercase transition-colors hover:text-accent md:flex"
+    >
+      Scroll
+      <span className="h-8 w-px animate-pulse bg-current" />
+    </a>
   </section>
 );
 

@@ -1,24 +1,23 @@
 import type { WorkItem } from "@/app/types";
 import WorkCard from "@/app/components/WorkCard";
 import Reveal from "@/app/components/Reveal";
+import SectionHeading from "@/app/components/SectionHeading";
 
 interface WorksSectionProps {
   items: WorkItem[];
 }
 
 const WorksSection = ({ items }: WorksSectionProps) => (
-  <section id="works" className="px-8 py-22">
+  <section id="works" className="px-6 py-24 sm:px-8">
     <div className="mx-auto max-w-[1080px]">
-      <Reveal>
-        <h1 className="m-0 mb-12 text-center text-3xl font-extrabold tracking-[-0.02em]">Works</h1>
-      </Reveal>
-      <Reveal delay={0.1}>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-8">
-          {items.map((item) => (
-            <WorkCard key={item.id} item={item} />
-          ))}
-        </div>
-      </Reveal>
+      <SectionHeading index="03" title="Works" subtitle="制作物" />
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-6">
+        {items.map((item, index) => (
+          <Reveal key={item.id} delay={index * 0.08} className="h-full">
+            <WorkCard item={item} index={index} />
+          </Reveal>
+        ))}
+      </div>
     </div>
   </section>
 );
