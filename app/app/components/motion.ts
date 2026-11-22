@@ -38,18 +38,21 @@ export const observeReveals = (elements: HTMLElement[], rule = false) => {
     elements.forEach((element) => element.removeAttribute("data-reveal-state"));
     if (media.matches || !("IntersectionObserver" in window)) return;
     observer = new IntersectionObserver((entries) => {
+      // 同じ通知で新たに見えた要素だけを数え、後から見える項目の待ち時間を増やさない
+      let index = 0;
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const element = targets.get(entry.target as HTMLElement);
-        if (!element) return;
+        if (!element || revealed.has(element)) return;
+        element.style.setProperty("--reveal-delay", `${rule ? 0 : index * 0.08}s`);
+        index += 1;
         element.dataset.revealState = "visible";
         revealed.add(element);
         observer?.unobserve(entry.target);
       });
     });
-    elements.forEach((element, index) => {
+    elements.forEach((element) => {
       if (revealed.has(element)) return;
-      element.style.setProperty("--reveal-delay", `${rule ? 0 : index * 0.08}s`);
       element.dataset.revealState = "pending";
       observer?.observe(rule ? element.closest("h2") ?? element : element);
     });

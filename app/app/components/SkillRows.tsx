@@ -14,6 +14,7 @@ const SkillRows = ({ categories, works }: SkillRowsProps) => {
   const ref = useRef<HTMLDListElement>(null);
   const prefix = useId();
   const suppressFocus = useRef(false);
+  const pointerOpen = useRef<boolean | null>(null);
 
   useEffect(() => {
     setReady(true);
@@ -110,9 +111,18 @@ const SkillRows = ({ categories, works }: SkillRowsProps) => {
                     }}
                   >
                     {!ready && <span>{skill}</span>}
+                    {/* 押下後のフォーカスで開いても、押下前の状態を基準に切り替える */}
                     <button type="button" hidden={!ready} aria-expanded={open === skill} aria-controls={popupId}
                       className="cursor-pointer text-accent-text underline decoration-dotted underline-offset-4"
-                      onClick={() => setOpen(skill)}
+                      onPointerDown={(event) => {
+                        if (event.button === 0) pointerOpen.current = open === skill;
+                      }}
+                      onPointerCancel={() => { pointerOpen.current = null; }}
+                      onClick={(event) => {
+                        const wasOpen = event.detail ? pointerOpen.current : null;
+                        pointerOpen.current = null;
+                        setOpen((current) => (wasOpen ?? current === skill) ? null : skill);
+                      }}
                     >{skill}</button>
                     <div id={popupId} hidden={open !== skill} data-popover-open={open === skill ? "" : undefined}
                       role="region" aria-label={`${skill}を使った作品`}

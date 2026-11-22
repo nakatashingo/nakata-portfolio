@@ -58,6 +58,7 @@ const Header = () => {
     const nav = navRef.current;
     if (!nav) return;
     let frame = 0;
+    let transitionFrame = 0;
     let mounted = true;
     const measure = () => {
       const link = nav.querySelector<HTMLAnchorElement>(`a[href="${current}"]`);
@@ -66,6 +67,15 @@ const Header = () => {
       nav.style.setProperty("--nav-y", `${link.offsetTop + link.offsetHeight + 4}px`);
       nav.style.setProperty("--nav-width", `${link.offsetWidth}`);
       nav.dataset.measured = "true";
+      // 初回の位置を描画してから遷移を有効にし、左端からの滑り込みを防ぐ
+      if (!nav.dataset.animated && !transitionFrame) {
+        transitionFrame = requestAnimationFrame(() => {
+          transitionFrame = requestAnimationFrame(() => {
+            nav.dataset.animated = "true";
+            transitionFrame = 0;
+          });
+        });
+      }
     };
     const schedule = () => {
       cancelAnimationFrame(frame);
@@ -78,6 +88,7 @@ const Header = () => {
     return () => {
       mounted = false;
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(transitionFrame);
       resize.disconnect();
     };
   }, [current]);

@@ -34,14 +34,23 @@ const attachMagnet = (element: HTMLAnchorElement) => {
   const scroll = () => {
     if (!frame) frame = requestAnimationFrame(reset);
   };
-  element.addEventListener("pointermove", move, { passive: true });
-  element.addEventListener("pointerleave", reset, { passive: true });
-  window.addEventListener("scroll", scroll, { passive: true });
-  return () => {
-    reset();
-    element.removeEventListener("pointermove", move);
-    element.removeEventListener("pointerleave", reset);
+  // ホバー中だけスクロールを監視し、ページ内の全リンクで常時購読しない
+  const enter = (event: PointerEvent) => {
+    if (event.pointerType === "touch") return;
+    window.addEventListener("scroll", scroll, { passive: true });
+  };
+  const leave = () => {
     window.removeEventListener("scroll", scroll);
+    reset();
+  };
+  element.addEventListener("pointerenter", enter, { passive: true });
+  element.addEventListener("pointermove", move, { passive: true });
+  element.addEventListener("pointerleave", leave, { passive: true });
+  return () => {
+    leave();
+    element.removeEventListener("pointerenter", enter);
+    element.removeEventListener("pointermove", move);
+    element.removeEventListener("pointerleave", leave);
   };
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { usePointerMotion } from "@/app/components/motion";
 
 const attachGlow = (glow: HTMLDivElement) => {
@@ -51,12 +51,6 @@ const attachGlow = (glow: HTMLDivElement) => {
 const HeroGlow = () => {
   const ref = useRef<HTMLDivElement>(null);
   usePointerMotion(ref, attachGlow);
-  useEffect(() => {
-    const hero = ref.current?.closest("section");
-    if (!hero) return;
-    hero.dataset.heroReady = "true";
-    return () => { delete hero.dataset.heroReady; };
-  }, []);
   return <div ref={ref} aria-hidden className="hero-glow pointer-events-none absolute -top-40 -left-40 h-[520px] w-[640px] rounded-full bg-accent/15 blur-[120px]" />;
 };
 

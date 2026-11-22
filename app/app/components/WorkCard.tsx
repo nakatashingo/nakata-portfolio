@@ -9,6 +9,17 @@ interface WorkCardProps {
   item: WorkItem;
 }
 
+// ハッシュ移動は全カードで一度だけ購読し、同じハッシュの再選択だけクリックで補う
+const highlights = new Map<string, () => void>();
+const highlightHash = () => {
+  highlights.get(window.location.hash)?.();
+};
+const highlightSameHash = (event: MouseEvent) => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
+  if (link && link.origin === window.location.origin && link.pathname === window.location.pathname && link.search === window.location.search && link.hash === window.location.hash) highlightHash();
+};
+
 // 傾きと光は同じフレームで更新し、カード外へ出たら元の面へ戻す
 const attachTilt = (card: HTMLElement) => {
   let frame = 0;
@@ -42,14 +53,23 @@ const attachTilt = (card: HTMLElement) => {
   const scroll = () => {
     if (!frame) frame = requestAnimationFrame(reset);
   };
-  card.addEventListener("pointermove", move, { passive: true });
-  card.addEventListener("pointerleave", reset, { passive: true });
-  window.addEventListener("scroll", scroll, { passive: true });
-  return () => {
-    reset();
-    card.removeEventListener("pointermove", move);
-    card.removeEventListener("pointerleave", reset);
+  // スクロールによる基準位置の破棄は、ポインターがカード内にある間だけ必要
+  const enter = (event: PointerEvent) => {
+    if (event.pointerType === "touch") return;
+    window.addEventListener("scroll", scroll, { passive: true });
+  };
+  const leave = () => {
     window.removeEventListener("scroll", scroll);
+    reset();
+  };
+  card.addEventListener("pointerenter", enter, { passive: true });
+  card.addEventListener("pointermove", move, { passive: true });
+  card.addEventListener("pointerleave", leave, { passive: true });
+  return () => {
+    leave();
+    card.removeEventListener("pointerenter", enter);
+    card.removeEventListener("pointermove", move);
+    card.removeEventListener("pointerleave", leave);
   };
 };
 
@@ -68,23 +88,21 @@ const WorkCard = ({ item }: WorkCardProps) => {
       setHighlight((value) => value + 1);
       timer = setTimeout(() => setHighlight(0), 1200);
     };
-    const checkHash = () => {
-      if (window.location.hash === `#work-${item.id}`) show();
-    };
-    // 同じハッシュのリンクを再度選んだ場合も、作品の位置を知らせる
-    const click = (event: MouseEvent) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
-      if (link && link.origin === window.location.origin && link.pathname === window.location.pathname && link.search === window.location.search && link.hash === `#work-${item.id}`) show();
-    };
-    checkHash();
-    window.addEventListener("hashchange", checkHash);
-    document.addEventListener("click", click);
+    const hash = `#work-${item.id}`;
+    if (!highlights.size) {
+      window.addEventListener("hashchange", highlightHash);
+      document.addEventListener("click", highlightSameHash);
+    }
+    highlights.set(hash, show);
+    if (window.location.hash === hash) show();
     return () => {
       clearTimeout(timer);
       if (card) delete card.dataset.hashReady;
-      window.removeEventListener("hashchange", checkHash);
-      document.removeEventListener("click", click);
+      highlights.delete(hash);
+      if (!highlights.size) {
+        window.removeEventListener("hashchange", highlightHash);
+        document.removeEventListener("click", highlightSameHash);
+      }
     };
   }, [item.id]);
 

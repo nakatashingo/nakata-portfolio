@@ -77,16 +77,16 @@
  */
 @layer components {
   @media (prefers-reduced-motion: no-preference) {
-    [data-hero-ready] .hero-name {
+    .hero-name {
       animation: hero-name-in 0.6s ease-out both;
     }
 
-    [data-hero-ready] .hero-rule {
+    .hero-rule {
       transform-origin: left;
       animation: hero-rule-in 0.5s ease-out 0.35s both;
     }
 
-    [data-hero-ready] .hero-details {
+    .hero-details {
       animation: hero-details-in 0.6s ease-out 0.6s both;
     }
   }
@@ -209,7 +209,7 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    .nav-indicator {
+    .active-nav[data-animated] .nav-indicator {
       transition: transform 0.3s ease;
     }
 
@@ -258,7 +258,7 @@
 
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .magnetic-link {
-      transition: transform 0.3s cubic-bezier(0.22, 1.5, 0.36, 1);
+      transition: transform 0.3s cubic-bezier(0.22, 1.5, 0.36, 1), color 0.3s ease, border-color 0.3s ease;
     }
 
     .work-card-surface {
