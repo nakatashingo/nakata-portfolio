@@ -24,14 +24,17 @@ const Header = () => {
       const value = distance > 0 ? Math.max(0, Math.min(1, window.scrollY / distance)) : 0;
       progress.style.transform = `scaleX(${value})`;
     };
-    // スクロールとリサイズの通知を一描画にまとめ、軽減設定でも現在位置を直接示す
+    // スクロール・リサイズ・本文の高さ変更の通知を一描画にまとめ、軽減設定でも現在位置を直接示す
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
     update();
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule, { passive: true });
+    const resize = new ResizeObserver(schedule);
+    resize.observe(document.body);
     return () => {
+      resize.disconnect();
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
