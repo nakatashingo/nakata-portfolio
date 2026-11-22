@@ -13,8 +13,6 @@ export interface Profile {
   name: string;
   title: string;
   description: string;
-  avatarInitial: string;
-  avatarNote: string;
   socialLinks: SocialLink[];
 }
 
@@ -42,4 +40,5 @@ export interface WorkItem {
   description: string;
   tags: string[];
   link: string | null;
+  linkLabel?: string;
 }
