@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T15:41:54.182465+00:00",
+  "updated_at": "2026-11-22T16:38:27.959771+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -183,6 +183,28 @@
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/15"
       },
       "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/16",
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    },
+    {
+      "execution_unit": "PF-010",
+      "title": "PF-010 Add ambient hero glow, per-character name, scroll progress and per-skill reveal",
+      "state": "queued",
+      "dependencies": [],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-010/implementation.md",
+        "review_context": ".intent-cli/issues/PF-010/review-context.md",
+        "yaml": ".intent-cli/issues/PF-010/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 17,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/17"
+      },
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
