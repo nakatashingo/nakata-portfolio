@@ -77,17 +77,26 @@
  */
 @layer components {
   @media (prefers-reduced-motion: no-preference) {
-    .hero-name {
-      animation: hero-name-in 0.6s ease-out both;
+    .hero-name-character {
+      animation: hero-name-in 0.4s ease-out calc(var(--i) * 0.035s) both;
     }
 
     .hero-rule {
       transform-origin: left;
-      animation: hero-rule-in 0.5s ease-out 0.35s both;
+      animation: hero-rule-in 0.5s ease-out 0.5s both;
     }
 
     .hero-details {
-      animation: hero-details-in 0.6s ease-out 0.6s both;
+      animation: hero-details-in 0.6s ease-out 0.7s both;
+    }
+
+    /* ポインターの有無に関係なく漂わせ、タッチでも背景の変化を見せる */
+    .hero-glow-drift {
+      animation: hero-glow-drift 18s ease-in-out infinite alternate;
+    }
+
+    .hero-glow-secondary {
+      animation: hero-glow-secondary-drift 24s ease-in-out -8s infinite alternate;
     }
   }
 }
@@ -95,11 +104,29 @@
 @keyframes hero-name-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(0.4em);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes hero-glow-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(48px, -32px) scale(1.12);
+  }
+}
+
+@keyframes hero-glow-secondary-drift {
+  from {
+    transform: translate(32px, 24px) scale(1);
+  }
+  to {
+    transform: translate(-48px, -32px) scale(1.12);
   }
 }
 
@@ -123,6 +150,11 @@
 
 /* 装飾は領域を予約済みの絶対配置にし、動きによるレイアウトのずれを防ぐ */
 @layer components {
+  /* JavaScriptがない初期HTMLでは進捗線を表示しない */
+  .scroll-progress {
+    transform: scaleX(0);
+  }
+
   .nav-indicator {
     opacity: 0;
     transform: translate(var(--nav-x, 0px), var(--nav-y, 0px)) scaleX(var(--nav-width, 1));
@@ -219,6 +251,28 @@
 
     /* キーボードで先に辿った内容は表示待ちにしない */
     [data-reveal]:focus-within {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    /* 行全体は動かさず、分類名と最初の項目から順に表示する */
+    [data-reveal-row][data-reveal-state] .skill-item {
+      transition: opacity 0.4s ease-out calc(var(--i, 0) * 0.04s), transform 0.4s ease-out calc(var(--i, 0) * 0.04s);
+    }
+
+    [data-reveal-row][data-reveal-state="pending"]:not(:target):not(:focus-within) .skill-item {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    [data-reveal-row][data-reveal-state="visible"] .skill-item,
+    [data-reveal-row]:target .skill-item {
+      opacity: 1;
+      transform: none;
+    }
+
+    [data-reveal-row]:focus-within .skill-item {
       opacity: 1;
       transform: none;
       transition: none;

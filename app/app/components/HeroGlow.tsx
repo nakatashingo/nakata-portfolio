@@ -51,7 +51,15 @@ const attachGlow = (glow: HTMLDivElement) => {
 const HeroGlow = () => {
   const ref = useRef<HTMLDivElement>(null);
   usePointerMotion(ref, attachGlow);
-  return <div ref={ref} aria-hidden className="hero-glow pointer-events-none absolute -top-40 -left-40 h-[520px] w-[640px] rounded-full bg-accent/15 blur-[120px]" />;
+  return (
+    <>
+      {/* 自律移動を外側に分け、内側のポインター追従とtransformを合成する */}
+      <div aria-hidden className="hero-glow-drift pointer-events-none absolute -top-40 -left-40 h-[520px] w-[640px]">
+        <div ref={ref} className="hero-glow h-full w-full rounded-full bg-accent/15 blur-[120px]" />
+      </div>
+      <div aria-hidden className="hero-glow-secondary pointer-events-none absolute -right-24 -bottom-24 h-[360px] w-[420px] rounded-full bg-accent/10 blur-[120px]" />
+    </>
+  );
 };
 
 export default HeroGlow;
