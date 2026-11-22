@@ -1,0 +1,8 @@
+{
+  "schema_version": "1",
+  "scope": "execution-unit:PF-008",
+  "actor": "design",
+  "team": "portfolio",
+  "claimed_at": "2026-11-22T15:37:10.727169+00:00",
+  "base_commit": "58383640e401ee50983c29bc875b6086a1fe7b4c"
+}
