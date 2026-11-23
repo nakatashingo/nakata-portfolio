@@ -152,6 +152,22 @@
 
 /* 装飾は領域を予約済みの絶対配置にし、動きによるレイアウトのずれを防ぐ */
 @layer components {
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ripple-hero {
+    border: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+
+  .ripple-button {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
   /* JavaScriptがない初期HTMLでは進捗線を表示しない */
   .scroll-progress {
     transform: scaleX(0);
@@ -224,6 +240,15 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    /* 大きさと座標は生成時に固定し、描画中はtransformとopacityだけを動かす */
+    .ripple-hero {
+      animation: ripple-hero 0.7s ease-out both;
+    }
+
+    .ripple-button {
+      animation: ripple-button 0.6s ease-out both;
+    }
+
     .active-nav[data-animated] .nav-indicator {
       transition: transform 0.3s ease;
     }
@@ -306,5 +331,27 @@
     .work-card-surface[data-tilt] .work-edge {
       opacity: 0.18;
     }
+  }
+}
+
+@keyframes ripple-hero {
+  from {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes ripple-button {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
   }
 }

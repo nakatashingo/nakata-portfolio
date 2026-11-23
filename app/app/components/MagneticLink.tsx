@@ -2,6 +2,7 @@
 
 import { useRef, type ComponentProps } from "react";
 import { usePointerMotion } from "@/app/components/motion";
+import RippleLayer from "@/app/components/RippleLayer";
 
 // 動くリンク自身ではなく、動く前の中心を基準にしてポインターの揺れを防ぐ
 const attachMagnet = (element: HTMLAnchorElement) => {
@@ -54,10 +55,15 @@ const attachMagnet = (element: HTMLAnchorElement) => {
   };
 };
 
-const MagneticLink = ({ className = "", ...props }: ComponentProps<"a">) => {
+const MagneticLink = ({ className = "", children, ...props }: ComponentProps<"a">) => {
   const ref = useRef<HTMLAnchorElement>(null);
   usePointerMotion(ref, attachMagnet);
-  return <a {...props} ref={ref} className={`magnetic-link ${className}`} />;
+  return (
+    <a {...props} ref={ref} className={`magnetic-link relative overflow-hidden ${className}`}>
+      <span className="relative z-[1] flex items-center gap-2">{children}</span>
+      <RippleLayer variant="button" />
+    </a>
+  );
 };
 
 export default MagneticLink;

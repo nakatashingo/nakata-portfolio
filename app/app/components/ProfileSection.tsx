@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import HeroGlow from "@/app/components/HeroGlow";
 import MagneticLink from "@/app/components/MagneticLink";
+import RippleLayer from "@/app/components/RippleLayer";
 import type { Profile } from "@/app/types";
 import SocialIcon from "@/app/components/SocialIcon";
 
@@ -12,8 +13,10 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
   <section id="profile" className="relative overflow-hidden">
     {/* 大小の柔らかな光で奥行きを作り、文字の読みやすさを保つ */}
     <HeroGlow />
+    {/* 光と本文の間に波紋を置き、文字の手前には描かない */}
+    <RippleLayer variant="hero" />
 
-    <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
+    <div className="relative z-[2] mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
       <h1 aria-label={profile.name} className="m-0 text-[clamp(3rem,9vw,5.5rem)] leading-[1.05] font-black tracking-[-0.02em]">
         {/* 単語内をひとまとまりにし、通常の空白での折り返しを保つ */}
         {profile.name.split(/(\s)/u).map((part, partIndex, parts) => {
