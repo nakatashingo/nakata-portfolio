@@ -11,8 +11,6 @@ export interface SocialLink {
 
 export interface Profile {
   name: string;
-  title: string;
-  description: string;
   socialLinks: SocialLink[];
 }
 

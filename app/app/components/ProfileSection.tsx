@@ -14,7 +14,6 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
     <HeroGlow />
 
     <div className="relative mx-auto flex min-h-[calc(100svh-64px)] max-w-[1080px] flex-col items-start justify-center px-6 py-20 sm:px-8">
-      <p className="hero-details m-0 mb-6 text-[0.9375rem] text-muted">{profile.title}</p>
       <h1 aria-label={profile.name} className="m-0 text-[clamp(3rem,9vw,5.5rem)] leading-[1.05] font-black tracking-[-0.02em]">
         {/* 単語内をひとまとまりにし、通常の空白での折り返しを保つ */}
         {profile.name.split(/(\s)/u).map((part, partIndex, parts) => {
@@ -38,7 +37,6 @@ const ProfileSection = ({ profile }: ProfileSectionProps) => (
       <div aria-hidden className="hero-rule my-7 h-1 w-16 bg-accent" />
       <div className="hero-details flex w-full min-w-0 flex-col items-start gap-6">
         <p className="m-0 text-[1.125rem] text-muted">中田 慎吾</p>
-        <p className="m-0 max-w-[36em] text-base leading-[1.9]">{profile.description}</p>
         <nav className="mt-2 flex flex-wrap gap-3">
           {profile.socialLinks.map((social) => (
             <MagneticLink
