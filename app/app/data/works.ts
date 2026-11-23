@@ -12,9 +12,9 @@ export const worksItems: WorkItem[] = [
   },
   {
     id: 5,
-    title: "AR花火（技大祭 企画局ワークショップ）",
+    title: "AR花火（技大祭 ワークショップ）",
     description:
-      "紙に描いた絵を花火にしてスマホの AR で打ち上げるアプリで、技大祭の企画局ワークショップで使っています。チームで開発しました。ユーザー画面（React Three Fiber・AR.js）、管理者画面（Next.js）、API（Go）で構成されています。デモ画面、QR コード付きキーホルダーの PDF 生成、手描き画像の背景除去とインク検出の改善などを担当しました。",
+      "紙に描いた絵を花火にしてスマホの AR で打ち上げるアプリで、技大祭のワークショップで使っています。チームで開発しました。ユーザー画面（React Three Fiber・AR.js）、管理者画面（Next.js）、API（Go）で構成されています。デモ画面、QR コード付きキーホルダーの PDF 生成、手描き画像の背景除去とインク検出の改善などを担当しました。",
     tags: ["TypeScript", "React Three Fiber", "AR.js", "Go"],
     link: "https://github.com/NUTFes/ar-hanabi-mobile",
   },
