@@ -7,10 +7,10 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     label: "フレームワーク / ライブラリ",
-    items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "Zustand"],
+    items: ["React", "Next.js", "Tailwind CSS"],
   },
   {
     label: "ツール",
-    items: ["Git", "GitHub", "Docker"],
+    items: ["Git", "GitHub", "Docker", "Unity"],
   },
 ];
