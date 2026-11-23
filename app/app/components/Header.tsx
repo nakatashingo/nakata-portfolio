@@ -1,6 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useHeadingFlash } from "@/app/components/useHeadingFlash";
+
+const ACCENTS = [
+  { value: "teal", label: "ティール" },
+  { value: "blue", label: "ブルー" },
+  { value: "orange", label: "オレンジ" },
+] as const;
 
 const NAV_LINKS = [
   { href: "#profile", label: "Profile" },
@@ -11,8 +18,18 @@ const NAV_LINKS = [
 
 const Header = () => {
   const [current, setCurrent] = useState("#profile");
+  const [accentIndex, setAccentIndex] = useState(0);
   const navRef = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
+  const accentLabel = `アクセントカラーを切り替える（現在: ${ACCENTS[accentIndex].label}）`;
+  useHeadingFlash(navRef);
+
+  const cycleAccent = () => {
+    const next = (accentIndex + 1) % ACCENTS.length;
+    // ページ内だけの選択としてルートへ伝え、再読み込み時は既定色に戻す
+    document.documentElement.dataset.accent = ACCENTS[next].value;
+    setAccentIndex(next);
+  };
 
   useEffect(() => {
     const progress = progressRef.current;
@@ -125,9 +142,15 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-10 border-b border-line bg-surface-alt/70 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-between gap-x-8 gap-y-2 px-6 py-4 sm:px-8">
-        <a href="#profile" className="text-[1.0625rem] font-bold text-foreground">
+        <button
+          type="button"
+          onClick={cycleAccent}
+          aria-label={accentLabel}
+          title={accentLabel}
+          className="cursor-pointer border-0 bg-transparent p-0 text-[1.0625rem] font-bold text-foreground"
+        >
           Nakata Shingo
-        </a>
+        </button>
         <nav ref={navRef} className="active-nav relative flex flex-wrap gap-5 sm:gap-8">
           {NAV_LINKS.map((link) => (
             <a
