@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "updated_at": "2026-11-22T17:03:44.602072+00:00",
+  "updated_at": "2026-11-23T05:08:19.74818+00:00",
   "items": [
     {
       "execution_unit": "PF-001",
@@ -252,6 +252,28 @@
         "url": "https://github.com/nakatashingo/nakata-portfolio/issues/21"
       },
       "linked_pr": "https://github.com/nakatashingo/nakata-portfolio/pull/22",
+      "worker_role": "builder",
+      "review_role": "reviewer",
+      "priority": "high",
+      "priority_revision": 0
+    },
+    {
+      "execution_unit": "PF-012",
+      "title": "PF-012 Remove the hero role title and self-introduction",
+      "state": "queued",
+      "dependencies": [],
+      "blocked_by": [],
+      "clarification_return_path": "intents/portfolio/clarifications/open.md",
+      "packet_paths": {
+        "implementation": ".intent-cli/issues/PF-012/implementation.md",
+        "review_context": ".intent-cli/issues/PF-012/review-context.md",
+        "yaml": ".intent-cli/issues/PF-012/packet.yaml"
+      },
+      "linked_issue": {
+        "repo": "nakatashingo/nakata-portfolio",
+        "number": 23,
+        "url": "https://github.com/nakatashingo/nakata-portfolio/issues/23"
+      },
       "worker_role": "builder",
       "review_role": "reviewer",
       "priority": "high",
