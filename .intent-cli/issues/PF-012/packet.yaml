@@ -1,0 +1,36 @@
+implementation_issue_packet:
+  issue_title: "PF-012 Remove the hero role title and self-introduction"
+  issue_kind: feature
+  source_execution_unit: PF-012
+  domain: portfolio
+  target_repo: nakatashingo/nakata-portfolio
+  target_path: app/app/components/ProfileSection.tsx app/app/types.ts app/app/data/profile.ts app/app/layout.tsx
+  target_part: "Hero without role title and self-introduction; page description without the role"
+  dependencies: []
+  technical_baseline:
+    - "PF-009 merged on main"
+  intent_references:
+    - intents/portfolio/intent-tree/01-content.md
+  acceptance_criteria:
+    - "The hero no longer renders the role title or the self-introduction paragraph; it shows the name h1, the accent rule, the 「中田 慎吾」 line and the social links, still vertically centred."
+    - "Profile in types.ts has no title/description, profile.ts has no title/description, and nothing references profile.title or profile.description."
+    - "layout.tsx description and openGraph.description are exactly 「中田慎吾（Nakata Shingo）のポートフォリオサイトです。」; titles unchanged."
+    - "The name reveal, rule and details animations and all other motion still work; no other copy, data or style changes."
+    - "`npx tsc --noEmit` and `npm run build` succeed in app/, and `git diff --check` is clean."
+intent_placement:
+  primary_intent: intents/portfolio/intent-tree/01-content.md
+  supporting_intents: []
+  new_intent_needed: false
+  placement_rationale: "Hero content ruling updated in 01-content."
+knowledge_updates:
+  intent_tree: {required: false, target_paths: [], summary: "Updated before publish."}
+  adr: {required: false, target_paths: [], decision_title: ""}
+  diagram: {required: false, target_paths: [], diagram_type: none}
+  docs: {required: false, target_paths: [], summary: ""}
+closeout_learning:
+  expected: ""
+  write_back_required: false
+  write_back_targets: []
+guide_reachability:
+  no_role_facing_surface: true
+  routes: []
